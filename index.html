@@ -1,0 +1,1862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pilots website</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&family=Montserrat:wght@400;600;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #e0f2fe;
+            color: #1f2937;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+        }
+        .canvas {
+            position: relative;
+            width: 800px;
+            min-height: 1000px;
+            background-color: inherit;
+            background-image: url('https://images.unsplash.com/photo-1557683316-973673baf926?w=1200&auto=format&fit=crop');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center top;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        a { text-decoration: none; }
+    </style>
+    <!-- EMBEDDED ONE-PAGE-BUILDER DATA FOR RE-IMPORTING -->
+    <script id="one-page-builder-data" type="application/json">{"title":"pilots website","settings":{"backgroundColor":"#e0f2fe","textColor":"#1f2937","backgroundImage":"https://images.unsplash.com/photo-1557683316-973673baf926?w=1200&auto=format&fit=crop","backgroundSize":"cover"},"elements":[{"id":"el_crlngor86","type":"text","content":"pilots cool website!","x":0,"y":0,"width":522,"height":66,"locked":false,"zIndex":491,"settings":{"alignment":"center","fontFamily":"'Playfair Display', serif","fontSize":50}},{"id":"el_bg3zndijr","type":"text","content":"games i like to play\n","x":0,"y":61,"width":150,"height":25,"locked":false,"zIndex":36,"settings":{"alignment":"left","fontFamily":"'Inter', sans-serif","fontSize":16}},{"id":"el_fds4jnr09","type":"image","content":"","x":0,"y":88,"width":73,"height":65,"locked":false,"zIndex":41,"settings":{"url":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpETStmgJH4QEJZSBgBNiDGUXmxNvygam1uOlgiUoabXnx81PNGE-m7LJyjYh_vYuNCZZvIZprxIy_4dLZX4EdB--4iZUqJ6TuSlRgdMGohg&s=10","objectFit":"cover","alt":"Sample Graphic"}},{"id":"el_4z5xgp1wo","type":"text","content":"half life 1&2","x":77,"y":102,"width":167,"height":40,"locked":false,"zIndex":297,"settings":{"alignment":"left","fontFamily":"'Roboto', sans-serif","fontSize":30}},{"id":"el_qn5t17w0z","type":"image","content":"","x":0,"y":175,"width":74,"height":64,"locked":false,"zIndex":294,"settings":{"url":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpaxuBSt0hlVHxQ9ddiDrpY5Ll3qjtdU0934ybIWWhMg&s=10","objectFit":"fill","alt":"Sample Graphic"}},{"id":"el_7znzpiq6d","type":"text","content":"portal 1&2","x":79,"y":184,"width":142,"height":42,"locked":false,"zIndex":296,"settings":{"alignment":"left","fontFamily":"'Roboto', sans-serif","fontSize":30}},{"id":"el_h5q871piy","type":"image","content":"","x":2,"y":256,"width":70,"height":48,"locked":false,"zIndex":292,"settings":{"url":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAc5EDXRdUcd_yUZoirle9sauvnVtvharnzvLP4wZ9fQ&s=10","objectFit":"fill","alt":"Sample Graphic"}},{"id":"el_7565z1iw7","type":"text","content":"the binding of isaac","x":74,"y":258,"width":264,"height":42,"locked":false,"zIndex":293,"settings":{"alignment":"left","fontFamily":"'Roboto', sans-serif","fontSize":30}},{"id":"el_sgkxor0qx","type":"image","content":"","x":0,"y":318,"width":72,"height":55,"locked":false,"zIndex":290,"settings":{"url":"data:image/jpeg;base64,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","objectFit":"fill","alt":"Sample Graphic"}},{"id":"el_jmzaz7ymt","type":"text","content":"doom games","x":74,"y":326,"width":181,"height":45,"locked":false,"zIndex":291,"settings":{"alignment":"left","fontFamily":"'Roboto', sans-serif","fontSize":30}},{"id":"el_k1jy2bpp9","type":"link","content":"and more just check out my steam profile just click here","x":0,"y":374,"width":338,"height":50,"locked":false,"zIndex":288,"settings":{"url":"https://steamcommunity.com/profiles/76561199193138062/","style":"solid","align":"center","fontFamily":"'Roboto', sans-serif","fontSize":16}},{"id":"el_jdmxccgxq","type":"text","content":"im also good at","x":0,"y":668,"width":242,"height":46,"locked":false,"zIndex":311,"settings":{"alignment":"left","fontFamily":"'Montserrat', sans-serif","fontSize":30}},{"id":"el_afr2b3p49","type":"text","content":"math\nscience\nfixing things\nsoldering\n","x":0,"y":716,"width":120,"height":124,"locked":false,"zIndex":312,"settings":{"alignment":"left","fontFamily":"'Inter', sans-serif","fontSize":20}},{"id":"el_t9elmq6nk","type":"text","content":"i love my girl friend arlene!","x":269,"y":64,"width":203,"height":24,"locked":false,"zIndex":133,"settings":{"alignment":"left","fontFamily":"'Inter', sans-serif","fontSize":16}},{"id":"el_l92ruvseu","type":"link","content":"TikTok","x":12,"y":596,"width":61,"height":30,"locked":false,"zIndex":286,"settings":{"url":"www.tiktok.com/@king.p819","style":"text","align":"center","fontFamily":"'Inter', sans-serif","fontSize":16}},{"id":"el_12zb4zq0i","type":"image","content":"","x":0,"y":507,"width":85,"height":87,"locked":false,"zIndex":270,"settings":{"url":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALwAAACUCAMAAAAeaLPCAAABMlBMVEX///8AAADtK2D///0EAAAKvMQJNDO05OUAuMEOrrf8///tIVsAAwD89PTuYIGSHDv09PTNzc1gYGCCgoIpKSmrq6sKSkyMHDzm5uYxMTH2L2bd3d23t7daWlrt7e3qMGeKioqamprsRG9AQEBPT08gICASEhKioqJ6eno5OTnBwcEZGRlvb2+p4+TqAFAQAAANxdLsrLtjEygNhIYEFRYAQEF61NOjc4OlF0FhGS7zqbXz09rqlam5JE0sChPz5ejQJlVHDB3og5nrepJWABzHaYO1n6WyyMoAZVwAm6UAZGcQEBvM7e8MqKYVeXYRO0SGztQvus0jz8fIQGN7HjkIIR8RKzQXdHshBA/k9vblSXdax88NW2QGEgAJKyTvvstTl5NPtrRvs6iQfIFEAADvaZODD6sXAAAKZUlEQVR4nO2dCVfbuBaAbUcGYzvEYQngFBICZWsJCdukhGwwb4EJLXRCQ0inmc578///wkiys0vepBB8DveUnkOwOF9urq7uIglBeJM3eZM3CbkYtkybw5cYq8n4wcHybnoRSTq9u3xwEE+uThvLXYz4u83Fhe0lcUSWthfSm+/ir/hT2FheXNh6P8rdl/dbC4vLG9OmJMnG8vraDh28Kztr66+N34hvu3P3Zfv12I+R3B2zcTdZ2k2+Cv542jc6xk/Hp00uxBf3g6Aj2V+cLv7q3lpQdCRre1P0/rss5JbsTgk9vsXOLopb07Cd1c0PPNhF8cPmi9tOfJ0POpL1F1b+cmAfQ5L95RdEN9I80ZGkX2zJSvqKBbzJdvKF2AOtqG6y9CL0B0zrEl3WDsLL/hL0B5y8O0k+TJj+YHLoSCZKH/dLc3qWGJJTl+cnuFz59TMAzMzJg6KcuYyYnM/x79/H4BNuIybl7zc++mbvwiu2zGHNA6cxHyeTnm/6Ze/Cnx/aMnv4S6FQ+CTqToM2J8H+zje7Da/M9n/JhWaaMZdR7/izr/pnJ8AXJcmMOSoeCvf43ggSv/fgI91fE8loZsHR5qGs8w4xNwOwE+DVy6xZKruN42z28UARDQG+kpWqNbdxa1zXKv9ekgIvCFdZ6dh1IFd/uRyInQgfTZkxN6MXRY55YTJgxkqAV9W8JpXhT5xH7vNbaIOmrCTNq9Frc8VllYWS5sUexMVT4eGcfZZ0V9Vzc/Z7fOHViuS2yELZ48OeDMpOho9EhErmV/fBfKx+kS+8gCznX64LlbjIgz0ZvJ5KhVej/17CP7ceIw7e4qH6zcDsVPiIKkT+818IrQP4jE6ZuxyChNUF/vACUv7sze1vR0AUqY5ngd3hBAjjvcBDqcvy3ecvp6entBCZObA3gk9XZ83Dr9b9gyx//arMUIYvsobGSYeONgs8kohaP5eVByr8e9Ypy2I1bvDwZYjfVn7QxrPaDcN0ddd8BGm/1fq9sNKAfn/c9BfY2DdY2F01b0tGkqQVERDmLVtYz1ab9AKvqkYmK8FAk+Qw2WqXwTIoJ/jI2GprQM2jKJmg+Y9M8Gx9sxF4FaH6gt9nYQ8cyRPhYQ5YxA7eMzxTVO/HUeq6HWL1l/tReDU6fx3F9P234AzP4iz95H/AilMsfiJ8BMJnq3lDHdS+M3yaAd5PmQyAx5nE9+bnz81m8xbQ4LVsdr5TifT5neHXg7NveC3IQ9ZviebJnZLLWYX4IxFQ4CWpVJq/KEah5VhvQI06wG8H9/QeSx7QVL41b3AlXrG+cgCxAJEIv/IUkzLXF0UD4sNPwFHzDCWQA49tnNPmnNJrfuB/+GWdrHmYfdcKmpaZv77oFCF+5JkOvxR8mdr1sNcQ6jgxl7N0jqR9P1tvqSlJqh6LZM2j0oEO8U1Ng9+lMs9ZDE8KD8Sd4JuJXJ0Nco+PNzm7dQPJZ207TlnKpMKjsbEqfEqSNPQfJTxgcTeu8NCqv8zZ7HL7sAUX/4g3eKRn/VOsBN+AaZpUs2GAd8mi4EQF362OGUyJEHrXAXrRPNa0XmusxAqlErQxotkEL4AYzqUytCBhdjRHD1uDK6cH+IG0W38q154oZrMXNBV0rcqDL4pimUxdHYq3vGjemwSu1G+4pFHgsethkMUMrfnc4APXP5xLNjAcuLPUft4aTTZePbwITiybgexhg4eTFRu80jZQFSBU8DqYubFWJmwz/SARf6kp7TXDA/HWcpKzPfeIqSvFfD5ffAWad3KV4BF7eOVe7TlJVa1cprJYNGnqrtJxkUrkbCeJCl9Y+wgdByqW8IEPvEg5hQcAu0n5sOveodqvNQtdMzE7H/jg/RGHwOwPKxzrGg1kn7e1blYLjcbxcSP2iQd8mjs8jIS/52AsJvc3o6iYXdPM6nH5CIdY4Gi68A7JyA1WfP/Ry6yl95XB2JCaSXkWhmSEmgYCEUfC970nDYsdZ0884RnSQFoCDsAPHBnUu1C24hG7rg8+xwrPkIDTSx8JnGfbbiyiGs94qjZG0iF2eIbSB73ohJZX+byXOBVRNmqWRjM5dniGohPV3YATtLzO2mmfquaxxddG81B2+DQDPLXQeoJNvlvzUi+R4gtHo1noKLxg+IVnKbTSStyABN8YS0PZ4Zn6yLR634md/FlQGF46Hs+hwdkw/IZPeKbmArWt0xyGRzZP2LSnY68k922+8uwPnq2tQ2uo3SqD8ALyNsQdh01laMIWM/7g2RpqtFZmYhhefSbDH+G50YfvpPzBM+5QJCZTcCLC/K/d6oXDQj6rQfixmhc2+V74Bh9LWS1Xj+yMTWSyswQAzMl9eIhlpKTq+NZy0JQtr9R97FLzBc/avidunIDwyB5aAzWDjiY1xOGIEhVh5cGJLUSvEXzDIzr7xgnalpXbHNJov15jXGULR0NP6ADc4DLmea/3WkTOpkpwqWRh3rJCW2SBnJNnBxqSkN6sDT0Ajm7kB0VWcvVIN0fvaGSXShH2UwCU+ge0G+W+Dw8djnFVsKCB1Uw7u5NzuKAGf2jBR69R4FzacT520RMO27SETTL8GTTmoeKqoHYWEDrAvdiZZvecTq+QqRZxhl7wqngeu+jJWxPBKUwEW0MPqsLqn7eJR8j+mGjedBts/d69ijOWlPsGdEu4bE0kF0AAuFUG8m+bvt6eu0EyJ9v9WHRexPp4YGyAVigp5c1mOG0KJW/H1cXTk4evEGyoQBxptYfOdA3OabTt34/VcNqETiqc6Ti+qUeGq9vQrcxa01RBJeT7geI3DA1wquihO4qF00ZoWlQPPsMpO6J5SN+qn7fb7Z/tc9wctF8XBKsoZRa8Onlu543I2SD47e5hZAdWd2tKq9Wya93d16M4MpBSNY/waV7s1BLIN6Xdch+N304eNYs1dDrN04TleOyCfOAF6CAxd+hlOIyFcaPbJEWeROF5EQKxUo+2YCd+1gVVdRmtouUJlzK9+ni+RzMph7yAmPg51gocl45d/PaahvA95EUNEnTxx19je95GxMDpuaaZJa/rE+9TpZSDjSiM2UVFerLtoJ5JETUdNFRQe/LIzv1go9Muxf+hLT8kerSN6SJjmYxZqnlk53+k1HGbYuOqMo6OO5ydeS1l9XoKZa/L0wQO8zoeHvl/9u8i/qyx/nu7KDvPdodNS7me4O3JRI5R0zub0PB3StLzZbFSidp73qKVYudK0rrNQe/Z06QOsNOvDkDTtlHNZjN/X11e5PP5i6vreSmb7TY1q7En98OAtkzuqhjapQ062qVUbpQ0DTWQoWR7Ooeraqxm7VP0IpO8KMbxugy9fFyQTFPqN5LhN9VG7chp0IhM9HYnh8MASLX606eVUtW0RKoWGmU/5BO+qMTpihjcSbN8ylO5XCvbduLZy0z+iphwX84T7muRwn0hFQxzJnEV2IvdgRfmS9iEUF9/J4T74sFwX/kohPqyTSQhvuZUCPcFs0Kor/bF+OG9VFkI93XWSAx/nucVXSRuiY8r3F8ZuSXhvTzfkvD+2QJbQvsHIwYllH+q403e5E3ehCD/AHYeL6vEUYTyAAAAAElFTkSuQmCC","objectFit":"cover","alt":"Sample Graphic"}},{"id":"el_0w98yqlhg","type":"image","content":"","x":85,"y":508,"width":85,"height":87,"locked":false,"zIndex":269,"settings":{"url":"data:image/jpeg;base64,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","objectFit":"cover","alt":"Sample Graphic"}},{"id":"el_715rh45hm","type":"link","content":"ig","x":77,"y":587,"width":102,"height":50,"locked":false,"zIndex":285,"settings":{"url":"https://www.instagram.com/pilo.tlouieking?stkn=MXh3amVsZWM4eWFqcQ%3D%3D&utm_source=qr","style":"text","align":"center","fontFamily":"'Inter', sans-serif","fontSize":16}},{"id":"el_1wro64ds1","type":"image","content":"","x":169,"y":509,"width":92,"height":85,"locked":false,"zIndex":271,"settings":{"url":"data:image/jpeg;base64,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","objectFit":"cover","alt":"Sample Graphic"}},{"id":"el_yz27uewiq","type":"link","content":"snap","x":121,"y":587,"width":200,"height":50,"locked":false,"zIndex":282,"settings":{"url":"https://www.snapchat.com/add/pilot_king2026?share_id=k3qkUL2jQLazgKIkizEaUQ&locale=en_US","style":"text","align":"center","fontFamily":"'Inter', sans-serif","fontSize":16}},{"id":"el_nv9tqwmxo","type":"image","content":"","x":262,"y":508,"width":83,"height":87,"locked":false,"zIndex":330,"settings":{"url":"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJ4AAACUCAMAAABVwGAvAAAAaVBMVEX///9XZexMXOvM0PnEyPhVY+xRYOxPXuxKWuvo6fzj5fvR1Pn5+f78/P/y8/3Z2/qTm/Jzfu+7wPZ/ifCCjPCaovNjcO5pde6gqPN6hPDs7v3c3/uLlPGnrfRBUutdau2yuPU4S+qts/W8b1KmAAAE40lEQVR4nO2b2ZKqMBCGZckiEZBFdtHx/R/yBMeFLDglSZ/iIv/F1BRK+OwmSXcn2e2cnJycnJycnJycnJycnJycViju9lGfsmCF0rSP9kkMCBflp7auPOyvEMXYq+rilEcwbElYUx8jhLzV4jcTn2ZhYp8uKAheDzYXxkVgGS5pELEDN4mgxqoBu4zag5tEs84eXVJapuN8hTX7JbZtN8nPbPGdfPt0nO9khy6w1GNlYSv9t8ug8Fob7s2B6DhfbgHvAoaHKnO6/QhF53nj3hjvCjCoPEWvpnTxEcy3/OU7msZXXWYQofwlZDy1RTUkXmUa/PUVHJ3nVb0hHgM0HjcfM8UD7Bm8b5jihX9GoQjrw2h++U/L09AU73O0gumIinN4Vn4E4RcLNNLPxveN8ZathwipsoZN8/qhlL5GygO/nLAmqwhZNiIBw8P+Zcj7Z8wRjD7leZxPuCj/b3wGS0mfD5dFG4LhkUsezYb8uCzPechSLhbk57Kcfxbll6VWgPDw7btmrnoHA+H5w5eTZTxouxgMHkJfx7mJtroAg+efv2/orAvMQPBWJQlJoem+IHh0VYoVaMwHgUfqdU3VmqYA8Nbmp5p8GQAPr62OaN4+CLzVyb1qPvt4uD2sbevQynz28UaD1D6Xc2breOhikFwlFwSMRxqT1hq5NevONap6BcDORbVR4txJWbNtPGrkW+5dCounyfyiNNUM1EmaakoADBQPESUM7Qce/tU36Xp8q3mANyhFgFhMLi3jkUL5nE72QGMpvJNdOU4YVE0UCwKIR+UUY189JgIyzC8Pj7uwUuO5UUA8JA0r8fH1tHHmyP41OxC5gifOu3bxlIJX954G6CzAf5tImWSiCoHhKVF8+p5Ef+sCd81rBmMq3pEIYYFlvFJy1WycwMUbbxbYySNRLJQ77OIpGVr/xluwnjJQNnB4SiV9/u7N5pNm9u7JawNCpd8yntzaYXi58Wfec39eLh/k4DUExFOmtPRpPnF98bmGiS6pfAcDxFMetst/i2O0Fpy4r+8QmKqhdQ+HhzSLTEGLCalOkg8Pp4oQ3GqCwz3cuKfD2yVBGGpikygMA13G+b/xvpTD2yieZwPPA8PzLWzPinwwPGVYjv8saBzk6B9yWJbGse44sI+ABzYcpYAvgMMjpfjy7UtKsmu3UKWPu2vmU+UWuIjFI57k3nRAP17WsEgagZOINZn3gwZxGoyZB5kKedg7ic46pA0hBFXt8Zazfs/Vs/x2bCvELzep6Pru6IklNPs1Fopz0VKHacUCYUJHLvr715/SWYREuCRHcvUboDqKSCZ4WLtg8ftLhOCaterSJMjCAfJr9rIgW4Kb9PodCat1y5JAa2qYFA8XJ4X2C4+nP6rkSV742jVTc7yF1XBMsnsn+bxJ6O7e7pQt7YoFw+MuptyEofd5v8AlzAtMF79jvFgffPAdHzv+oOMff1qrN99huPGNIhvfZrPxTUpiRcmyUG0aQG58g1x8tLhXXpZSnPxe296cufWtrYAbg/HKVX9B4ba3VSfKIrEtOiub0je+pX/rByJgjpNQa8dJdh3AYZzS4mGmbR9l2vpBsN29hrzdY3Q7W4cQsU9riEOIk55HODFdcYST5xxV3YId4bzL4AAsmw7ALlWznJycnJycnJycnJycnJycnD7rH6jjTMGIoK63AAAAAElFTkSuQmCC","objectFit":"cover","alt":"Sample Graphic"}},{"id":"el_vmvgk5upq","type":"text","content":"pilotishere","x":262,"y":601,"width":83,"height":22,"locked":false,"zIndex":280,"settings":{"alignment":"left","fontFamily":"'Inter', sans-serif","fontSize":16}},{"id":"el_bzf03om78","type":"text","content":"he/him","x":185,"y":59,"width":59,"height":24,"locked":false,"zIndex":215,"settings":{"alignment":"left","fontFamily":"'Inter', sans-serif","fontSize":16}},{"id":"el_utl2cjriy","type":"text","content":"I like:\n","x":295,"y":76,"width":184,"height":61,"locked":false,"zIndex":385,"settings":{"alignment":"left","fontFamily":"'Montserrat', sans-serif","fontSize":50}},{"id":"el_3s8vbqt5w","type":"text","content":"retro nintendo consoles","x":299,"y":137,"width":183,"height":23,"locked":false,"zIndex":383,"settings":{"alignment":"left","fontFamily":"'Inter', sans-serif","fontSize":16}},{"id":"el_23i7vrrpj","type":"text","content":"homebrew\n","x":299,"y":164,"width":84,"height":22,"locked":false,"zIndex":386,"settings":{"alignment":"left","fontFamily":"'Inter', sans-serif","fontSize":16}},{"id":"el_37zh3caco","type":"text","content":"modding","x":300,"y":186,"width":70,"height":26,"locked":false,"zIndex":387,"settings":{"alignment":"left","fontFamily":"'Inter', sans-serif","fontSize":16}},{"id":"el_e7t8yn4fh","type":"text","content":"chilling with friends\n","x":300,"y":211,"width":152,"height":23,"locked":false,"zIndex":388,"settings":{"alignment":"left","fontFamily":"'Inter', sans-serif","fontSize":16}},{"id":"el_9itnpqbrs","type":"text","content":"computers","x":301,"y":233,"width":87,"height":21,"locked":false,"zIndex":389,"settings":{"alignment":"left","fontFamily":"'Inter', sans-serif","fontSize":16}},{"id":"el_7pr4rpkvn","type":"image","content":"","x":352,"y":504,"width":448,"height":227,"locked":false,"zIndex":495,"settings":{"url":"https://cdn.discordapp.com/attachments/1422433756601384993/1555846981623087225/2026-10-03_00.39.16.png?backend=b2&ex=6ac202ea&is=6ac0b16a&hm=8e7d3f2249ca8627645b8e37d484bda62f2876e25e39fd3979849303011aade8&","objectFit":"cover","alt":"Sample Graphic"}},{"id":"el_3jt481ndw","type":"text","content":"minecraft (tainted cain skin)","x":585,"y":481,"width":215,"height":24,"locked":false,"zIndex":496,"settings":{"alignment":"left","fontFamily":"'Inter', sans-serif","fontSize":16}},{"id":"el_e1poy7ug8","type":"text","content":"im good at making minecraft skins\n","x":534,"y":730,"width":263,"height":24,"locked":false,"zIndex":494,"settings":{"alignment":"left","fontFamily":"'Inter', sans-serif","fontSize":16}},{"id":"el_ivt8bijoe","type":"embed","content":"\u003cdiv class=\"flex items-center justify-center w-full h-full bg-gray-100 text-gray-500 border-2 border-dashed border-gray-300 font-medium text-xs\">Embed Placeholder\u003c/div>","x":0,"y":436,"width":40,"height":20,"locked":false,"zIndex":488,"settings":{"type":"html","url":"","htmlCode":"\u003c!-- Floating Local Time & Status Corner Widget -->\n\u003cdiv class=\"status-widget\">\n  \u003cdiv class=\"status-header\">\n    \u003cspan class=\"status-indicator\">\n      \u003cspan class=\"status-dot\">\u003c/span>\n      \u003cspan class=\"status-ping\">\u003c/span>\n    \u003c/span>\n    \u003cspan class=\"status-text\" id=\"statusText\">🟢 Loading...\u003c/span>\n  \u003c/div>\n  \u003cdiv class=\"time-container\">\n    \u003cspan class=\"time-clock\" id=\"localClock\">00:00:00 AM\u003c/span>\n    \u003cspan class=\"time-zone\" id=\"timeZone\">PST\u003c/span>\n  \u003c/div>\n\u003c/div>\n\n\u003cstyle>\n.status-widget {\n  position: fixed;\n  bottom: 20px;\n  right: 20px;\n  z-index: 9999;\n  display: flex;\n  flex-direction: column;\n  gap: 6px;\n  padding: 12px 16px;\n  background: rgba(22, 27, 34, 0.85);\n  backdrop-filter: blur(12px);\n  -webkit-backdrop-filter: blur(12px);\n  border: 1px solid rgba(255, 255, 255, 0.12);\n  border-radius: 14px;\n  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.36);\n  color: #e6edf3;\n  font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-serif;\n  font-size: 13px;\n  user-select: none;\n  transition: transform 0.2s ease, box-shadow 0.2s ease;\n}\n\n.status-widget:hover {\n  transform: translateY(-2px);\n  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);\n}\n\n.status-header {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n}\n\n.status-indicator {\n  position: relative;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 10px;\n  height: 10px;\n}\n\n.status-dot {\n  width: 8px;\n  height: 8px;\n  background-color: #238636;\n  border-radius: 50%;\n}\n\n.status-ping {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  border-radius: 50%;\n  background-color: #2ea043;\n  opacity: 0.75;\n  animation: status-pulse 2s cubic-bezier(0, 0, 0.2, 1) infinite;\n}\n\n@keyframes status-pulse {\n  75%, 100% {\n    transform: scale(2.2);\n    opacity: 0;\n  }\n}\n\n.status-text {\n  font-weight: 600;\n  color: #f0f6fc;\n}\n\n.time-container {\n  display: flex;\n  align-items: baseline;\n  justify-content: space-between;\n  gap: 12px;\n  color: #8b949e;\n  font-size: 12px;\n}\n\n.time-clock {\n  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, monospace;\n  font-weight: 500;\n  color: #58a6ff;\n}\n\n.time-zone {\n  font-size: 11px;\n  text-transform: uppercase;\n  letter-spacing: 0.5px;\n}\n\u003c/style>\n\n\u003cscript>\n(function() {\n  // Set your target IANA Timezone string (e.g., 'America/Los_Angeles', 'America/New_York', 'Europe/London')\n  const USER_TIMEZONE = 'America/Los_Angeles';\n\n  function updateWidget() {\n    const clockEl = document.getElementById('localClock');\n    const tzEl = document.getElementById('timeZone');\n    const statusEl = document.getElementById('statusText');\n\n    const now = new Date();\n\n    // Format current time for your target timezone\n    const timeFormatter = new Intl.DateTimeFormat('en-US', {\n      timeZone: USER_TIMEZONE,\n      hour: 'numeric',\n      minute: '2-digit',\n      second: '2-digit',\n      hour12: true\n    });\n\n    const hourFormatter = new Intl.DateTimeFormat('en-US', {\n      timeZone: USER_TIMEZONE,\n      hour: 'numeric',\n      hour12: false\n    });\n\n    if (clockEl) {\n      clockEl.textContent = timeFormatter.format(now);\n    }\n\n    // Get time zone abbreviation (e.g. PST, EST, GMT)\n    const tzNameFormatter = new Intl.DateTimeFormat('en-US', {\n      timeZone: USER_TIMEZONE,\n      timeZoneName: 'short'\n    });\n    const parts = tzNameFormatter.formatToParts(now);\n    const tzName = parts.find(p => p.type === 'timeZoneName')?.value || 'LOCAL';\n    if (tzEl) {\n      tzEl.textContent = tzName;\n    }\n\n    // Automatically toggle status based on local time\n    const hour = parseInt(hourFormatter.format(now), 10);\n    if (statusEl) {\n      if (hour >= 0 && hour \u003c 8) {\n        statusEl.textContent = '🌙 Probably Sleeping';\n      } else if (hour >= 8 && hour \u003c 18) {\n        statusEl.textContent = '💻 Working / Coding';\n      } else {\n        statusEl.textContent = '🎮 Gaming / Chilling';\n      }\n    }\n  }\n\n  updateWidget();\n  setInterval(updateWidget, 1000);\n})();\n\u003c/script>","previewInEditor":false}},{"id":"el_eylzxkfmk","type":"embed","content":"\u003cdiv class=\"flex items-center justify-center w-full h-full bg-gray-100 text-gray-500 border-2 border-dashed border-gray-300 font-medium text-xs\">Embed Placeholder\u003c/div>","x":0,"y":975,"width":143,"height":25,"locked":false,"zIndex":481,"settings":{"type":"html","url":"","htmlCode":"\u003cbutton onclick=\"playRetroSound('coin')\">🪙 Coin\u003c/button>\n\u003cbutton onclick=\"playRetroSound('jump')\">🚀 Jump\u003c/button>\n\n\u003cscript>\nfunction playRetroSound(type) {\n  const ctx = new (window.AudioContext || window.webkitAudioContext)();\n  const osc = ctx.createOscillator();\n  const gain = ctx.createGain();\n  osc.connect(gain);\n  gain.connect(ctx.destination);\n\n  const now = ctx.currentTime;\n  if (type === 'coin') {\n    osc.type = 'square';\n    osc.frequency.setValueAtTime(987.77, now); // B5\n    osc.frequency.setValueAtTime(1318.51, now + 0.08); // E6\n    gain.gain.setValueAtTime(0.1, now);\n    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);\n    osc.start(now);\n    osc.stop(now + 0.3);\n  } else if (type === 'jump') {\n    osc.type = 'square';\n    osc.frequency.setValueAtTime(150, now);\n    osc.frequency.exponentialRampToValueAtTime(600, now + 0.15);\n    gain.gain.setValueAtTime(0.1, now);\n    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.15);\n    osc.start(now);\n    osc.stop(now + 0.15);\n  }\n}\n\u003c/script>","previewInEditor":false}},{"id":"el_9vusuwvqa","type":"text","content":"click on them","x":0,"y":955,"width":66,"height":20,"locked":false,"zIndex":469,"settings":{"alignment":"left","fontFamily":"'Inter', sans-serif","fontSize":10}},{"id":"el_07m8l0gfm","type":"embed","content":"\u003cdiv class=\"flex items-center justify-center w-full h-full bg-gray-100 text-gray-500 border-2 border-dashed border-gray-300 font-medium text-xs\">Embed Placeholder\u003c/div>","x":48,"y":433,"width":40,"height":20,"locked":false,"zIndex":489,"settings":{"type":"html","url":"","htmlCode":"\u003cscript>\n(function() {\n  const code = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];\n  let index = 0;\n\n  document.addEventListener('keydown', (e) => {\n    if (e.key.toLowerCase() === code[index].toLowerCase()) {\n      index++;\n      if (index === code.length) {\n        alert('hey you found a secret.');\n        index = 0;\n      }\n    } else {\n      index = 0;\n    }\n  });\n})();\n\u003c/script>","previewInEditor":false}},{"id":"el_2lqg6797k","type":"embed","content":"\u003cdiv class=\"flex items-center justify-center w-full h-full bg-gray-100 text-gray-500 border-2 border-dashed border-gray-300 font-medium text-xs\">Embed Placeholder\u003c/div>","x":482,"y":0,"width":318,"height":424,"locked":false,"zIndex":422,"settings":{"type":"html","url":"","htmlCode":"\u003c!-- Dark Windows XP Paint 8x8 Pixel Art Widget with Direct Send -->\n\u003cdiv class=\"xp-window\">\n  \u003c!-- Title Bar -->\n  \u003cdiv class=\"xp-title-bar\">\n    \u003cdiv class=\"xp-title-text\">\n      \u003csvg class=\"xp-app-icon\" viewBox=\"0 0 16 16\" width=\"14\" height=\"14\">\n        \u003cpath fill=\"#ffd700\" d=\"M1 13l3-3 2 2-3 3H1v-2z\"/>\n        \u003cpath fill=\"#58a6ff\" d=\"M11 2l3 3-7 7-3-3 7-7z\"/>\n        \u003ccircle cx=\"12\" cy=\"4\" r=\"3\" fill=\"#f85149\" opacity=\"0.8\"/>\n      \u003c/svg>\n      untitled - Paint\n    \u003c/div>\n    \u003cdiv class=\"xp-title-controls\">\n      \u003cbutton class=\"xp-win-btn\" title=\"Minimize\">_\u003c/button>\n      \u003cbutton class=\"xp-win-btn\" title=\"Maximize\">□\u003c/button>\n      \u003cbutton class=\"xp-win-btn xp-close-btn\" id=\"xpResetBtn\" title=\"New / Reset Canvas\">✕\u003c/button>\n    \u003c/div>\n  \u003c/div>\n\n  \u003c!-- Menu Bar -->\n  \u003cdiv class=\"xp-menu-bar\">\n    \u003cspan class=\"xp-menu-item\" id=\"xpNewMenu\">\u003cu>F\u003c/u>ile\u003c/span>\n    \u003cspan class=\"xp-menu-item\">\u003cu>E\u003c/u>dit\u003c/span>\n    \u003cspan class=\"xp-menu-item\">\u003cu>V\u003c/u>iew\u003c/span>\n    \u003cspan class=\"xp-menu-item\">\u003cu>I\u003c/u>mage\u003c/span>\n    \u003cspan class=\"xp-menu-item\">\u003cu>C\u003c/u>olors\u003c/span>\n    \u003cspan class=\"xp-menu-item\">\u003cu>H\u003c/u>elp\u003c/span>\n  \u003c/div>\n\n  \u003c!-- Main Workspace -->\n  \u003cdiv class=\"xp-workspace\">\n    \u003c!-- Left Toolbox -->\n    \u003cdiv class=\"xp-toolbox-container\">\n      \u003cdiv class=\"xp-toolbox\" id=\"xpToolbox\">\n        \u003cbutton class=\"xp-tool-btn\" data-tool=\"freeform\" title=\"Freeform Select\">✂️\u003c/button>\n        \u003cbutton class=\"xp-tool-btn\" data-tool=\"select\" title=\"Select\">🔲\u003c/button>\n        \u003cbutton class=\"xp-tool-btn\" data-tool=\"eraser\" title=\"Eraser / Color Eraser\">🧹\u003c/button>\n        \u003cbutton class=\"xp-tool-btn\" data-tool=\"bucket\" title=\"Fill With Color\">🪣\u003c/button>\n        \u003cbutton class=\"xp-tool-btn\" data-tool=\"eyedropper\" title=\"Pick Color\">🧪\u003c/button>\n        \u003cbutton class=\"xp-tool-btn\" data-tool=\"zoom\" title=\"Magnifier\">🔍\u003c/button>\n        \u003cbutton class=\"xp-tool-btn active\" data-tool=\"pencil\" title=\"Pencil\">✏️\u003c/button>\n        \u003cbutton class=\"xp-tool-btn\" data-tool=\"brush\" title=\"Brush\">🖌️\u003c/button>\n        \u003cbutton class=\"xp-tool-btn\" data-tool=\"airbrush\" title=\"Airbrush\">💨\u003c/button>\n        \u003cbutton class=\"xp-tool-btn\" data-tool=\"text\" title=\"Text\">A\u003c/button>\n        \u003cbutton class=\"xp-tool-btn\" data-tool=\"line\" title=\"Line\">╱\u003c/button>\n        \u003cbutton class=\"xp-tool-btn\" data-tool=\"curve\" title=\"Curve\">〰️\u003c/button>\n        \u003cbutton class=\"xp-tool-btn\" data-tool=\"rect\" title=\"Rectangle\">▭\u003c/button>\n        \u003cbutton class=\"xp-tool-btn\" data-tool=\"polygon\" title=\"Polygon\">⬡\u003c/button>\n        \u003cbutton class=\"xp-tool-btn\" data-tool=\"ellipse\" title=\"Ellipse\">◯\u003c/button>\n        \u003cbutton class=\"xp-tool-btn\" data-tool=\"rounded\" title=\"Rounded Rectangle\">▢\u003c/button>\n      \u003c/div>\n      \u003c!-- Tool Options Box -->\n      \u003cdiv class=\"xp-tool-options\" id=\"xpToolOptions\">\n        \u003cdiv class=\"xp-option-preview\">8x8 Grid\u003c/div>\n      \u003c/div>\n    \u003c/div>\n\n    \u003c!-- Canvas Viewport -->\n    \u003cdiv class=\"xp-canvas-viewport\">\n      \u003cdiv class=\"xp-canvas-frame\">\n        \u003cdiv class=\"xp-pixel-grid\" id=\"xpPixelGrid\">\u003c/div>\n      \u003c/div>\n    \u003c/div>\n  \u003c/div>\n\n  \u003c!-- Bottom Color Palette -->\n  \u003cdiv class=\"xp-palette-section\">\n    \u003c!-- Current Color Preview Box -->\n    \u003cdiv class=\"xp-color-preview-box\">\n      \u003cdiv class=\"xp-color-bg\" id=\"bgColorPreview\" title=\"Background / Canvas Color\">\u003c/div>\n      \u003cdiv class=\"xp-color-fg\" id=\"fgColorPreview\" title=\"Foreground / Active Color\">\u003c/div>\n    \u003c/div>\n\n    \u003c!-- 28-Color XP Palette Grid -->\n    \u003cdiv class=\"xp-palette-grid\" id=\"xpPaletteGrid\">\u003c/div>\n  \u003c/div>\n\n  \u003c!-- XP Drawing Send Bar -->\n  \u003cdiv class=\"xp-send-bar\">\n    \u003cinput type=\"text\" id=\"xpSenderName\" placeholder=\"Your name / handle\" maxlength=\"20\" />\n    \u003cbutton id=\"xpSendBtn\" class=\"xp-tool-btn xp-send-btn\">✉️ Send Drawing\u003c/button>\n  \u003c/div>\n\n  \u003c!-- Status Bar -->\n  \u003cdiv class=\"xp-status-bar\">\n    \u003cspan class=\"xp-status-pane xp-status-main\" id=\"xpStatusText\">Pencil tool active. Click or drag on canvas.\u003c/span>\n    \u003cspan class=\"xp-status-pane xp-status-coords\" id=\"xpCoords\">1, 1\u003c/span>\n    \u003cspan class=\"xp-status-pane xp-status-dim\">8x8 px\u003c/span>\n  \u003c/div>\n\u003c/div>\n\n\u003cstyle>\n/* Dark XP Windows Container */\n.xp-window {\n  width: 320px;\n  background-color: #272c36;\n  border: 2px solid #3c4454;\n  border-radius: 6px 6px 2px 2px;\n  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 1px 1px 0 rgba(255, 255, 255, 0.1);\n  font-family: Tahoma, \"Segoe UI\", Geneva, sans-serif;\n  font-size: 11px;\n  color: #e1e6ed;\n  user-select: none;\n  -webkit-user-select: none;\n  overflow: hidden;\n}\n\n/* XP Title Bar */\n.xp-title-bar {\n  background: linear-gradient(180deg, #0058e6 0%, #003bb3 50%, #002699 51%, #0040cc 100%);\n  padding: 3px 5px 3px 7px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  color: #ffffff;\n  font-weight: bold;\n  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);\n}\n\n.xp-title-text {\n  display: flex;\n  align-items: center;\n  gap: 6px;\n  font-size: 12px;\n}\n\n.xp-title-controls {\n  display: flex;\n  gap: 2px;\n}\n\n.xp-win-btn {\n  width: 18px;\n  height: 18px;\n  background: linear-gradient(180deg, #3c82f8 0%, #0a4ecb 100%);\n  border: 1px solid #ffffff;\n  border-radius: 3px;\n  color: #ffffff;\n  font-size: 10px;\n  font-weight: bold;\n  line-height: 14px;\n  text-align: center;\n  cursor: pointer;\n  box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.4);\n}\n\n.xp-win-btn:active {\n  background: #0a4ecb;\n}\n\n.xp-close-btn {\n  background: linear-gradient(180deg, #f27261 0%, #d92d18 100%);\n}\n\n.xp-close-btn:hover {\n  background: linear-gradient(180deg, #ff8573 0%, #f03520 100%);\n}\n\n/* Menu Bar */\n.xp-menu-bar {\n  background-color: #272c36;\n  padding: 2px 6px;\n  display: flex;\n  gap: 12px;\n  border-bottom: 1px solid #1c2027;\n}\n\n.xp-menu-item {\n  color: #c5cbd5;\n  cursor: pointer;\n  padding: 1px 3px;\n}\n\n.xp-menu-item:hover {\n  background-color: #0a4ecb;\n  color: #ffffff;\n}\n\n/* Workspace Layout */\n.xp-workspace {\n  display: flex;\n  background-color: #1f232b;\n  padding: 4px;\n  gap: 4px;\n  border-top: 1px solid #3c4454;\n}\n\n/* Left Toolbox */\n.xp-toolbox-container {\n  display: flex;\n  flex-direction: column;\n  gap: 4px;\n}\n\n.xp-toolbox {\n  display: grid;\n  grid-template-columns: repeat(2, 25px);\n  gap: 1px;\n  background-color: #272c36;\n  padding: 1px;\n  border-top: 1px solid #181b21;\n  border-left: 1px solid #181b21;\n  border-right: 1px solid #434b5c;\n  border-bottom: 1px solid #434b5c;\n}\n\n.xp-tool-btn {\n  width: 25px;\n  height: 25px;\n  background: #272c36;\n  border-top: 1px solid #434b5c;\n  border-left: 1px solid #434b5c;\n  border-right: 1px solid #181b21;\n  border-bottom: 1px solid #181b21;\n  font-size: 12px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  cursor: pointer;\n  padding: 0;\n}\n\n.xp-tool-btn:active, .xp-tool-btn.active {\n  background: #181b21;\n  border-top: 1px solid #101216;\n  border-left: 1px solid #101216;\n  border-right: 1px solid #3c4454;\n  border-bottom: 1px solid #3c4454;\n  box-shadow: inset 1px 1px 1px rgba(0,0,0,0.5);\n}\n\n.xp-tool-options {\n  width: 51px;\n  height: 48px;\n  background-color: #272c36;\n  border-top: 1px solid #181b21;\n  border-left: 1px solid #181b21;\n  border-right: 1px solid #434b5c;\n  border-bottom: 1px solid #434b5c;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\n.xp-option-preview {\n  font-size: 9px;\n  color: #8b949e;\n  text-align: center;\n}\n\n/* Canvas Viewport */\n.xp-canvas-viewport {\n  flex-grow: 1;\n  background-color: #121418;\n  border-top: 2px solid #101216;\n  border-left: 2px solid #101216;\n  border-right: 1px solid #434b5c;\n  border-bottom: 1px solid #434b5c;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  padding: 10px;\n  overflow: auto;\n}\n\n.xp-canvas-frame {\n  background-color: #0d1014;\n  padding: 2px;\n  border-top: 1px solid #434b5c;\n  border-left: 1px solid #434b5c;\n  border-right: 1px solid #101216;\n  border-bottom: 1px solid #101216;\n  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);\n}\n\n/* 8x8 Pixel Grid */\n.xp-pixel-grid {\n  display: grid;\n  grid-template-columns: repeat(8, 20px);\n  grid-template-rows: repeat(8, 20px);\n  gap: 1px;\n  background-color: #272c36;\n  touch-action: none;\n  user-select: none;\n}\n\n.xp-pixel-cell {\n  width: 20px;\n  height: 20px;\n  background-color: #181b21;\n  cursor: crosshair;\n  box-sizing: border-box;\n}\n\n.xp-pixel-cell:hover {\n  outline: 1px dotted #ffffff;\n  z-index: 2;\n}\n\n/* Color Palette Section */\n.xp-palette-section {\n  display: flex;\n  align-items: center;\n  gap: 6px;\n  background-color: #272c36;\n  padding: 4px 6px;\n  border-top: 1px solid #3c4454;\n}\n\n.xp-color-preview-box {\n  position: relative;\n  width: 28px;\n  height: 28px;\n  background-color: #1f232b;\n  border-top: 1px solid #181b21;\n  border-left: 1px solid #181b21;\n  border-right: 1px solid #434b5c;\n  border-bottom: 1px solid #434b5c;\n  flex-shrink: 0;\n}\n\n.xp-color-bg {\n  position: absolute;\n  bottom: 3px;\n  right: 3px;\n  width: 15px;\n  height: 15px;\n  background-color: #181b21;\n  border: 1px solid #ffffff;\n}\n\n.xp-color-fg {\n  position: absolute;\n  top: 3px;\n  left: 3px;\n  width: 15px;\n  height: 15px;\n  background-color: #58a6ff;\n  border: 1px solid #ffffff;\n  z-index: 1;\n}\n\n.xp-palette-grid {\n  display: grid;\n  grid-template-columns: repeat(14, 13px);\n  grid-template-rows: repeat(2, 13px);\n  gap: 1px;\n  background-color: #181b21;\n  padding: 1px;\n  border-top: 1px solid #181b21;\n  border-left: 1px solid #181b21;\n  border-right: 1px solid #434b5c;\n  border-bottom: 1px solid #434b5c;\n  width: fit-content;\n}\n\n.xp-swatch {\n  width: 13px;\n  height: 13px;\n  border-top: 1px solid rgba(255,255,255,0.2);\n  border-left: 1px solid rgba(255,255,255,0.2);\n  border-right: 1px solid rgba(0,0,0,0.5);\n  border-bottom: 1px solid rgba(0,0,0,0.5);\n  cursor: pointer;\n  box-sizing: border-box;\n}\n\n/* XP Drawing Send Bar */\n.xp-send-bar {\n  display: flex;\n  gap: 4px;\n  background-color: #272c36;\n  padding: 4px 6px;\n  border-top: 1px solid #3c4454;\n}\n\n#xpSenderName {\n  flex-grow: 1;\n  background-color: #121418;\n  border: 1px solid #181b21;\n  color: #e1e6ed;\n  font-family: Tahoma, sans-serif;\n  font-size: 10px;\n  padding: 3px 6px;\n  border-radius: 2px;\n}\n\n#xpSenderName:focus {\n  outline: 1px solid #0a4ecb;\n}\n\n.xp-send-btn {\n  width: auto !important;\n  padding: 0 8px !important;\n  font-size: 10px !important;\n  font-weight: bold;\n  color: #58a6ff;\n  background: #1f232b !important;\n}\n\n.xp-send-btn:hover {\n  background: #0a4ecb !important;\n  color: #ffffff;\n}\n\n/* Status Bar */\n.xp-status-bar {\n  display: flex;\n  background-color: #272c36;\n  padding: 2px 4px;\n  gap: 3px;\n  border-top: 1px solid #181b21;\n  font-size: 10px;\n  color: #a0a8b6;\n}\n\n.xp-status-pane {\n  background-color: #272c36;\n  padding: 1px 4px;\n  border-top: 1px solid #181b21;\n  border-left: 1px solid #181b21;\n  border-right: 1px solid #434b5c;\n  border-bottom: 1px solid #434b5c;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n\n.xp-status-main { flex-grow: 1; }\n.xp-status-coords { width: 38px; text-align: center; }\n.xp-status-dim { width: 44px; text-align: center; }\n\u003c/style>\n\n\u003cscript>\n(function() {\n  function initPaintWidget() {\n    const paletteColors = [\n      '#000000', '#7b7b7b', '#7b0000', '#7b7b00', '#007b00', '#007b7b', '#00007b', '#7b007b',\n      '#003b7b', '#007b3b', '#00f8f8', '#007bf8', '#7b00f8', '#7b3b00',\n      '#ffffff', '#c3c3c3', '#f80000', '#f8f800', '#00f800', '#00f8f8', '#0000f8', '#f800f8',\n      '#58a6ff', '#3fb950', '#f85149', '#d29922', '#a371f7', '#181b21'\n    ];\n\n    const DEFAULT_CANVAS_COLOR = '#181b21';\n    let activeColor = '#58a6ff';\n    let activeTool = 'pencil';\n    let isDrawing = false;\n\n    const gridEl = document.getElementById('xpPixelGrid');\n    const fgPreview = document.getElementById('fgColorPreview');\n    const paletteGrid = document.getElementById('xpPaletteGrid');\n    const statusText = document.getElementById('xpStatusText');\n    const coordsText = document.getElementById('xpCoords');\n    const resetBtn = document.getElementById('xpResetBtn');\n    const newMenu = document.getElementById('xpNewMenu');\n\n    if (!gridEl || !paletteGrid) return;\n\n    // 1. Build Color Palette Swatches\n    paletteGrid.innerHTML = '';\n    paletteColors.forEach(color => {\n      const swatch = document.createElement('div');\n      swatch.className = 'xp-swatch';\n      swatch.style.backgroundColor = color;\n      swatch.title = color;\n\n      swatch.addEventListener('click', (e) => {\n        e.preventDefault();\n        activeColor = color;\n        if (fgPreview) fgPreview.style.backgroundColor = color;\n        if (activeTool === 'eraser') setTool('pencil');\n      });\n\n      paletteGrid.appendChild(swatch);\n    });\n\n    // 2. Build 8x8 Pixel Grid\n    gridEl.innerHTML = '';\n    for (let i = 0; i \u003c 64; i++) {\n      const cell = document.createElement('div');\n      cell.className = 'xp-pixel-cell';\n      cell.dataset.index = i;\n      cell.style.backgroundColor = DEFAULT_CANVAS_COLOR;\n\n      const x = (i % 8) + 1;\n      const y = Math.floor(i / 8) + 1;\n\n      cell.addEventListener('mousedown', (e) => {\n        e.preventDefault();\n        isDrawing = true;\n        if (coordsText) coordsText.textContent = `${x}, ${y}`;\n        applyTool(cell);\n      });\n\n      cell.addEventListener('mouseenter', (e) => {\n        if (coordsText) coordsText.textContent = `${x}, ${y}`;\n        if (isDrawing) applyTool(cell);\n      });\n\n      cell.addEventListener('dragstart', (e) => e.preventDefault());\n\n      gridEl.appendChild(cell);\n    }\n\n    // Stop drawing on mouseup\n    window.addEventListener('mouseup', () => { isDrawing = false; });\n\n    // Touch Support for Mobile\n    gridEl.addEventListener('touchstart', (e) => {\n      isDrawing = true;\n      handleTouch(e);\n    }, { passive: false });\n\n    gridEl.addEventListener('touchmove', (e) => {\n      if (isDrawing) {\n        e.preventDefault();\n        handleTouch(e);\n      }\n    }, { passive: false });\n\n    window.addEventListener('touchend', () => { isDrawing = false; });\n\n    function handleTouch(e) {\n      const touch = e.touches[0];\n      if (!touch) return;\n      const target = document.elementFromPoint(touch.clientX, touch.clientY);\n      if (target && target.classList.contains('xp-pixel-cell')) {\n        const idx = parseInt(target.dataset.index, 10);\n        if (coordsText) coordsText.textContent = `${(idx % 8) + 1}, ${Math.floor(idx / 8) + 1}`;\n        applyTool(target);\n      }\n    }\n\n    // 3. Tool Logic\n    function applyTool(cell) {\n      if (activeTool === 'pencil') {\n        cell.style.backgroundColor = activeColor;\n      } else if (activeTool === 'eraser') {\n        cell.style.backgroundColor = DEFAULT_CANVAS_COLOR;\n      } else if (activeTool === 'bucket') {\n        document.querySelectorAll('.xp-pixel-cell').forEach(c => {\n          c.style.backgroundColor = activeColor;\n        });\n      } else if (activeTool === 'eyedropper') {\n        const picked = cell.style.backgroundColor || DEFAULT_CANVAS_COLOR;\n        activeColor = rgbToHex(picked);\n        if (fgPreview) fgPreview.style.backgroundColor = activeColor;\n        setTool('pencil');\n      }\n    }\n\n    // 4. Tool Select Handlers\n    document.querySelectorAll('.xp-tool-btn').forEach(btn => {\n      btn.addEventListener('click', () => {\n        const toolName = btn.dataset.tool;\n        if (['pencil', 'eraser', 'bucket', 'eyedropper'].includes(toolName)) {\n          setTool(toolName);\n        } else if (btn.id !== 'xpSendBtn') {\n          if (statusText) statusText.textContent = `${btn.title || 'Tool'} is decorative in 8x8 mode.`;\n        }\n      });\n    });\n\n    function setTool(toolName) {\n      activeTool = toolName;\n      document.querySelectorAll('.xp-tool-btn').forEach(b => {\n        if (b.id !== 'xpSendBtn') b.classList.remove('active');\n      });\n      const activeBtn = document.querySelector(`.xp-tool-btn[data-tool=\"${toolName}\"]`);\n      if (activeBtn) activeBtn.classList.add('active');\n\n      const toolHelp = {\n        pencil: 'Pencil tool active. Click or drag on canvas.',\n        eraser: 'Eraser active. Clears pixels back to dark background.',\n        bucket: 'Fill Bucket active. Fills entire canvas with current color.',\n        eyedropper: 'Eyedropper active. Click any pixel to pick its color.'\n      };\n      if (statusText) statusText.textContent = toolHelp[toolName] || 'Paint tool selected.';\n    }\n\n    // Reset Canvas\n    function clearCanvas() {\n      document.querySelectorAll('.xp-pixel-cell').forEach(cell => {\n        cell.style.backgroundColor = DEFAULT_CANVAS_COLOR;\n      });\n      if (statusText) statusText.textContent = 'New image created.';\n    }\n\n    if (resetBtn) resetBtn.addEventListener('click', clearCanvas);\n    if (newMenu) newMenu.addEventListener('click', clearCanvas);\n\n    function rgbToHex(rgb) {\n      if (!rgb || rgb.startsWith('#')) return rgb || DEFAULT_CANVAS_COLOR;\n      const nums = rgb.match(/\\d+/g);\n      if (!nums) return DEFAULT_CANVAS_COLOR;\n      return \"#\" + nums.slice(0, 3).map(n => parseInt(n).toString(16).padStart(2, '0')).join('');\n    }\n\n    // 5. Send Drawing Handler\n    const sendBtn = document.getElementById('xpSendBtn');\n    if (sendBtn) {\n      sendBtn.addEventListener('click', () => {\n        const senderName = (document.getElementById('xpSenderName')?.value || '').trim();\n        const canvas = document.createElement('canvas');\n        canvas.width = 256;\n        canvas.height = 256;\n        const ctx = canvas.getContext('2d');\n        ctx.imageSmoothingEnabled = false;\n\n        document.querySelectorAll('.xp-pixel-cell').forEach((cell, i) => {\n          const x = (i % 8) * 32;\n          const y = Math.floor(i / 8) * 32;\n          ctx.fillStyle = cell.style.backgroundColor || DEFAULT_CANVAS_COLOR;\n          ctx.fillRect(x, y, 32, 32);\n        });\n\n        // Put your actual Discord Webhook URL here:\n        const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1555854014157951086/F4BMtLMJPmFkDbfh7wB-NVeZf-g3Bhtq35ZWmZtSdsWwqd6M1D_DJRoCnkZ-D9Mo7Lau';\n\n        if (DISCORD_WEBHOOK_URL === 'YOUR_DISCORD_WEBHOOK_URL_HERE') {\n          alert('⚠️ Please set your Discord Webhook URL on line 386 of the script!');\n          return;\n        }\n\n        if (statusText) statusText.textContent = 'Sending drawing...';\n        canvas.toBlob(async (blob) => {\n          const formData = new FormData();\n          formData.append('file', blob, 'pixel-drawing.png');\n          formData.append('content', `🎨 **New Pixel Drawing** from **${senderName || 'Anonymous'}**!`);\n\n          try {\n            const response = await fetch(DISCORD_WEBHOOK_URL, { method: 'POST', body: formData });\n            if (response.ok) {\n              if (statusText) statusText.textContent = 'Drawing sent successfully!';\n              alert('🎉 Drawing sent successfully!');\n            } else {\n              if (statusText) statusText.textContent = 'Failed to send drawing.';\n              alert('Failed to send drawing. Check your Discord Webhook URL.');\n            }\n          } catch (err) {\n            if (statusText) statusText.textContent = 'Error sending drawing.';\n            alert('Error: ' + err.message);\n          }\n        }, 'image/png');\n      });\n    }\n  }\n\n  if (document.readyState === 'loading') {\n    document.addEventListener('DOMContentLoaded', initPaintWidget);\n  } else {\n    initPaintWidget();\n  }\n})();\n\u003c/script>","previewInEditor":false}},{"id":"el_s3q1hrmyv","type":"embed","content":"\u003cdiv class=\"flex items-center justify-center w-full h-full bg-gray-100 text-gray-500 border-2 border-dashed border-gray-300 font-medium text-xs\">Embed Placeholder\u003c/div>","x":501,"y":754,"width":299,"height":246,"locked":false,"zIndex":480,"settings":{"type":"html","url":"","htmlCode":"\u003c!-- Retro Dark XP Guestbook Widget -->\n\u003cdiv class=\"xp-guestbook-window\">\n  \u003c!-- Title Bar -->\n  \u003cdiv class=\"xp-title-bar\">\n    \u003cdiv class=\"xp-title-text\">\n      \u003csvg viewBox=\"0 0 16 16\" width=\"14\" height=\"14\">\n        \u003cpath fill=\"#58a6ff\" d=\"M2 3h12v10H2z\"/>\n        \u003cpath fill=\"#272c36\" d=\"M4 5h8v1H4zm0 2h8v1H4zm0 2h5v1H4z\"/>\n      \u003c/svg>\n      Guestbook - Leave a Message\n    \u003c/div>\n    \u003cdiv class=\"xp-title-controls\">\n      \u003cbutton class=\"xp-win-btn\" title=\"Minimize\">_\u003c/button>\n      \u003cbutton class=\"xp-win-btn\" title=\"Maximize\">□\u003c/button>\n      \u003cbutton class=\"xp-win-btn xp-close-btn\" title=\"Close\">✕\u003c/button>\n    \u003c/div>\n  \u003c/div>\n\n  \u003c!-- Form Body -->\n  \u003cform id=\"xpGuestbookForm\" class=\"xp-guestbook-body\">\n    \u003cdiv class=\"xp-field\">\n      \u003clabel for=\"gbName\">Name / Handle:\u003c/label>\n      \u003cinput type=\"text\" id=\"gbName\" placeholder=\"e.g. AnonCoder\" maxlength=\"30\" required />\n    \u003c/div>\n\n    \u003cdiv class=\"xp-field\">\n      \u003clabel for=\"gbMessage\">Message:\u003c/label>\n      \u003ctextarea id=\"gbMessage\" rows=\"4\" placeholder=\"Write something nice...\" maxlength=\"500\" required>\u003c/textarea>\n    \u003c/div>\n\n    \u003cdiv class=\"xp-actions\">\n      \u003cspan id=\"gbStatus\" class=\"gb-status\">Ready\u003c/span>\n      \u003cbutton type=\"submit\" id=\"gbSubmitBtn\" class=\"gb-submit-btn\">✉️ Sign Guestbook\u003c/button>\n    \u003c/div>\n  \u003c/form>\n\u003c/div>\n\n\u003cstyle>\n/* Window Container */\n.xp-guestbook-window {\n  width: 300px;\n  background-color: #272c36;\n  border: 2px solid #3c4454;\n  border-radius: 6px 6px 2px 2px;\n  font-family: Tahoma, \"Segoe UI\", Geneva, sans-serif;\n  font-size: 11px;\n  color: #e1e6ed;\n  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), inset 1px 1px 0 rgba(255, 255, 255, 0.1);\n  overflow: hidden;\n  user-select: none;\n}\n\n/* XP Title Bar */\n.xp-guestbook-window .xp-title-bar {\n  background: linear-gradient(180deg, #0058e6 0%, #003bb3 50%, #002699 51%, #0040cc 100%);\n  padding: 3px 5px 3px 7px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  color: #ffffff;\n  font-weight: bold;\n  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);\n}\n\n.xp-guestbook-window .xp-title-text {\n  display: flex;\n  align-items: center;\n  gap: 6px;\n  font-size: 12px;\n}\n\n.xp-guestbook-window .xp-title-controls {\n  display: flex;\n  gap: 2px;\n}\n\n.xp-guestbook-window .xp-win-btn {\n  width: 18px;\n  height: 18px;\n  background: linear-gradient(180deg, #3c82f8 0%, #0a4ecb 100%);\n  border: 1px solid #ffffff;\n  border-radius: 3px;\n  color: #ffffff;\n  font-size: 10px;\n  font-weight: bold;\n  line-height: 14px;\n  text-align: center;\n  cursor: pointer;\n  box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.4);\n}\n\n.xp-guestbook-window .xp-close-btn {\n  background: linear-gradient(180deg, #f27261 0%, #d92d18 100%);\n}\n\n.xp-guestbook-window .xp-close-btn:hover {\n  background: linear-gradient(180deg, #ff8573 0%, #f03520 100%);\n}\n\n/* Form Layout */\n.xp-guestbook-body {\n  padding: 10px;\n  display: flex;\n  flex-direction: column;\n  gap: 10px;\n  background-color: #1f232b;\n}\n\n.xp-field {\n  display: flex;\n  flex-direction: column;\n  gap: 4px;\n}\n\n.xp-field label {\n  color: #a0a8b6;\n  font-size: 10px;\n}\n\n.xp-field input, \n.xp-field textarea {\n  background-color: #121418;\n  border-top: 1px solid #101216;\n  border-left: 1px solid #101216;\n  border-right: 1px solid #434b5c;\n  border-bottom: 1px solid #434b5c;\n  color: #e1e6ed;\n  padding: 6px;\n  font-family: Tahoma, sans-serif;\n  font-size: 11px;\n  border-radius: 2px;\n  resize: vertical;\n}\n\n.xp-field input:focus, \n.xp-field textarea:focus {\n  outline: 1px solid #0a4ecb;\n  background-color: #161920;\n}\n\n/* Form Action Bar */\n.xp-actions {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-top: 2px;\n}\n\n.gb-status {\n  font-size: 10px;\n  color: #8b949e;\n}\n\n.gb-submit-btn {\n  background: #272c36;\n  border-top: 1px solid #434b5c;\n  border-left: 1px solid #434b5c;\n  border-right: 1px solid #181b21;\n  border-bottom: 1px solid #181b21;\n  color: #58a6ff;\n  padding: 4px 10px;\n  font-family: Tahoma, sans-serif;\n  font-size: 11px;\n  font-weight: bold;\n  cursor: pointer;\n}\n\n.gb-submit-btn:hover {\n  background: #0a4ecb;\n  color: #ffffff;\n}\n\n.gb-submit-btn:active {\n  background: #181b21;\n  border-top: 1px solid #101216;\n  border-left: 1px solid #101216;\n  border-right: 1px solid #3c4454;\n  border-bottom: 1px solid #3c4454;\n}\n\n.gb-submit-btn:disabled {\n  opacity: 0.5;\n  cursor: not-allowed;\n}\n\u003c/style>\n\n\u003cscript>\n(function() {\n  function initGuestbook() {\n    const form = document.getElementById('xpGuestbookForm');\n    if (!form) return;\n\n    form.addEventListener('submit', async (e) => {\n      e.preventDefault();\n\n      // Paste your Discord Webhook URL below:\n      const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1555857270267453470/rV_tBvK8IKIcPyLQDUA3pjyrkbEt-Z27SzYGQw6Ovmug-WFdtdXCsJQO9tC-UO-n5ulW';\n\n      if (DISCORD_WEBHOOK_URL === 'YOUR_DISCORD_WEBHOOK_URL_HERE') {\n        alert('⚠️ Please set your Discord Webhook URL in the script!');\n        return;\n      }\n\n      const nameInput = document.getElementById('gbName');\n      const msgInput = document.getElementById('gbMessage');\n      const statusEl = document.getElementById('gbStatus');\n      const submitBtn = document.getElementById('gbSubmitBtn');\n\n      const name = nameInput.value.trim();\n      const message = msgInput.value.trim();\n\n      if (!name || !message) return;\n\n      // Construct Rich Embed Payload\n      const embedPayload = {\n        embeds: [{\n          title: \"📖 New Guestbook Entry\",\n          color: 0x58a6ff,\n          fields: [\n            { name: \"Author\", value: name, inline: true },\n            { name: \"Message\", value: message }\n          ],\n          footer: { text: \"Website Guestbook\" },\n          timestamp: new Date().toISOString()\n        }]\n      };\n\n      statusEl.textContent = 'Posting...';\n      submitBtn.disabled = true;\n\n      try {\n        const response = await fetch(DISCORD_WEBHOOK_URL, {\n          method: 'POST',\n          headers: { 'Content-Type': 'application/json' },\n          body: JSON.stringify(embedPayload)\n        });\n\n        if (response.ok) {\n          statusEl.textContent = 'Posted!';\n          alert('🎉 Thank you for signing the guestbook!');\n          form.reset();\n        } else {\n          const errText = await response.text();\n          statusEl.textContent = `Error ${response.status}`;\n          alert(`Failed to post (HTTP ${response.status}):\\n${errText}`);\n        }\n      } catch (err) {\n        statusEl.textContent = 'Network error.';\n        alert('Network Error (Check browser extensions/adblockers):\\n' + err.message);\n      } finally {\n        submitBtn.disabled = false;\n      }\n    });\n  }\n\n  if (document.readyState === 'loading') {\n    document.addEventListener('DOMContentLoaded', initGuestbook);\n  } else {\n    initGuestbook();\n  }\n})();\n\u003c/script>","previewInEditor":false}},{"id":"el_ezuk6ewal","type":"embed","content":"\u003cdiv class=\"flex items-center justify-center w-full h-full bg-gray-100 text-gray-500 border-2 border-dashed border-gray-300 font-medium text-xs\">Embed Placeholder\u003c/div>","x":7,"y":475,"width":40,"height":20,"locked":false,"zIndex":490,"settings":{"type":"html","url":"","htmlCode":"\u003c!-- Dark XP Draggable Notepad Sticky Notes System -->\n\u003cdiv id=\"xpNotesApp\">\n  \u003c!-- Spawner Bar / Control Hub -->\n  \u003cdiv class=\"xp-notes-spawner\">\n    \u003cbutton id=\"xpSpawnNoteBtn\" class=\"xp-spawn-btn\">📝 New Sticky Note\u003c/button>\n  \u003c/div>\n\n  \u003c!-- Note Container -->\n  \u003cdiv id=\"xpNotesContainer\">\u003c/div>\n\u003c/div>\n\n\u003cstyle>\n/* App Layering & Spawner Button */\n#xpNotesApp {\n  font-family: Tahoma, \"Segoe UI\", Geneva, sans-serif;\n  font-size: 11px;\n  color: #e1e6ed;\n  user-select: none;\n  -webkit-user-select: none;\n}\n\n/* Positioned at bottom left */\n.xp-notes-spawner {\n  position: fixed;\n  bottom: 15px;\n  left: 15px;\n  z-index: 99999;\n}\n\n.xp-spawn-btn {\n  background: linear-gradient(180deg, #272c36 0%, #1f232b 100%);\n  border-top: 1px solid #434b5c;\n  border-left: 1px solid #434b5c;\n  border-right: 1px solid #181b21;\n  border-bottom: 1px solid #181b21;\n  color: #58a6ff;\n  font-family: Tahoma, sans-serif;\n  font-size: 11px;\n  font-weight: bold;\n  padding: 6px 12px;\n  border-radius: 4px;\n  cursor: pointer;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);\n  display: flex;\n  align-items: center;\n  gap: 6px;\n}\n\n.xp-spawn-btn:hover {\n  background: #0a4ecb;\n  color: #ffffff;\n}\n\n.xp-spawn-btn:active {\n  background: #181b21;\n  box-shadow: inset 1px 1px 2px rgba(0,0,0,0.6);\n}\n\n/* Draggable Notepad Window */\n.xp-note-window {\n  position: fixed;\n  width: 260px;\n  background-color: #272c36;\n  border: 2px solid #3c4454;\n  border-radius: 6px 6px 2px 2px;\n  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), inset 1px 1px 0 rgba(255, 255, 255, 0.1);\n  overflow: hidden;\n  display: flex;\n  flex-direction: column;\n}\n\n/* XP Title Bar (Draggable Header) */\n.xp-note-window .xp-title-bar {\n  background: linear-gradient(180deg, #0058e6 0%, #003bb3 50%, #002699 51%, #0040cc 100%);\n  padding: 3px 5px 3px 7px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  color: #ffffff;\n  font-weight: bold;\n  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);\n  cursor: move;\n}\n\n.xp-note-window.active-window .xp-title-bar {\n  background: linear-gradient(180deg, #0058e6 0%, #003bb3 50%, #002699 51%, #0040cc 100%);\n}\n\n.xp-note-window:not(.active-window) .xp-title-bar {\n  background: linear-gradient(180deg, #424957 0%, #2c323d 100%);\n  color: #a0a8b6;\n  text-shadow: none;\n}\n\n.xp-note-window .xp-title-text {\n  display: flex;\n  align-items: center;\n  gap: 6px;\n  font-size: 11px;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n  max-width: 170px;\n}\n\n.xp-note-window .xp-title-controls {\n  display: flex;\n  gap: 2px;\n}\n\n.xp-note-window .xp-win-btn {\n  width: 18px;\n  height: 18px;\n  background: linear-gradient(180deg, #3c82f8 0%, #0a4ecb 100%);\n  border: 1px solid #ffffff;\n  border-radius: 3px;\n  color: #ffffff;\n  font-size: 10px;\n  font-weight: bold;\n  line-height: 14px;\n  text-align: center;\n  cursor: pointer;\n  box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.4);\n}\n\n.xp-note-window:not(.active-window) .xp-win-btn {\n  background: linear-gradient(180deg, #5c6575 0%, #3a414e 100%);\n  border-color: #a0a8b6;\n}\n\n.xp-note-window .xp-close-btn {\n  background: linear-gradient(180deg, #f27261 0%, #d92d18 100%) !important;\n}\n\n.xp-note-window .xp-close-btn:hover {\n  background: linear-gradient(180deg, #ff8573 0%, #f03520 100%) !important;\n}\n\n/* Notepad Menu Strip */\n.xp-note-menu {\n  background-color: #272c36;\n  padding: 1px 4px;\n  display: flex;\n  gap: 8px;\n  border-bottom: 1px solid #1c2027;\n  font-size: 10px;\n}\n\n.xp-note-menu-item {\n  color: #a0a8b6;\n  padding: 1px 2px;\n  cursor: pointer;\n}\n\n.xp-note-menu-item:hover {\n  background-color: #0a4ecb;\n  color: #ffffff;\n}\n\n/* Textarea Body */\n.xp-note-body {\n  background-color: #161920;\n  padding: 2px;\n  display: flex;\n  flex-direction: column;\n}\n\n.xp-note-textarea {\n  width: 100%;\n  height: 140px;\n  background-color: #121418;\n  color: #f0f4f8;\n  border-top: 1px solid #101216;\n  border-left: 1px solid #101216;\n  border-right: 1px solid #3c4454;\n  border-bottom: 1px solid #3c4454;\n  font-family: \"Consolas\", \"Lucida Console\", \"Courier New\", monospace;\n  font-size: 11px;\n  line-height: 1.4;\n  padding: 6px;\n  box-sizing: border-box;\n  resize: vertical;\n  outline: none;\n  user-select: text;\n  -webkit-user-select: text;\n}\n\n.xp-note-textarea:focus {\n  background-color: #0d0f12;\n  border-color: #0a4ecb;\n}\n\n/* Collapsed Window State */\n.xp-note-window.collapsed .xp-note-menu,\n.xp-note-window.collapsed .xp-note-body,\n.xp-note-window.collapsed .xp-note-status {\n  display: none;\n}\n\n/* Status Bar */\n.xp-note-status {\n  background-color: #272c36;\n  padding: 2px 6px;\n  font-size: 9px;\n  color: #8b949e;\n  border-top: 1px solid #181b21;\n  display: flex;\n  justify-content: space-between;\n}\n\u003c/style>\n\n\u003cscript>\n(function() {\n  const STORAGE_KEY = 'xp_notepad_sticky_notes';\n  let highestZIndex = 1000;\n\n  const defaultNotes = [\n    {\n      id: 'note-1',\n      title: 'Welcome.txt',\n      text: '📌 Dark XP Sticky Notes\\n\\n• Drag the blue title bar to move.\\n• Type anything - it auto-saves!\\n• Click \"_\" to collapse or \"✕\" to delete.\\n• Spawner button at bottom left adds more notes.',\n      x: 60,\n      y: 60,\n      collapsed: false,\n      zIndex: 1001\n    }\n  ];\n\n  function getSavedNotes() {\n    try {\n      const saved = localStorage.getItem(STORAGE_KEY);\n      return saved ? JSON.parse(saved) : defaultNotes;\n    } catch(e) {\n      return defaultNotes;\n    }\n  }\n\n  function saveNotes(notes) {\n    try {\n      localStorage.setItem(STORAGE_KEY, JSON.stringify(notes));\n    } catch(e) {\n      console.warn('Could not save sticky notes to localStorage:', e);\n    }\n  }\n\n  function renderApp() {\n    const container = document.getElementById('xpNotesContainer');\n    if (!container) return;\n    \n    container.innerHTML = '';\n    const notes = getSavedNotes();\n\n    notes.forEach(noteData => {\n      if (noteData.zIndex > highestZIndex) highestZIndex = noteData.zIndex;\n      const noteEl = createNoteElement(noteData);\n      container.appendChild(noteEl);\n    });\n  }\n\n  function createNoteElement(data) {\n    const win = document.createElement('div');\n    win.className = `xp-note-window ${data.collapsed ? 'collapsed' : ''}`;\n    win.id = data.id;\n    win.style.left = `${data.x}px`;\n    win.style.top = `${data.y}px`;\n    win.style.zIndex = data.zIndex || 1000;\n\n    win.innerHTML = `\n      \u003cdiv class=\"xp-title-bar\">\n        \u003cdiv class=\"xp-title-text\">\n          \u003csvg viewBox=\"0 0 16 16\" width=\"12\" height=\"12\">\n            \u003cpath fill=\"#ffffff\" d=\"M3 1h8l3 3v11H3V1zm8 1v3h3L11 2z\"/>\n          \u003c/svg>\n          \u003cspan class=\"xp-title-label\">${escapeHtml(data.title)}\u003c/span>\n        \u003c/div>\n        \u003cdiv class=\"xp-title-controls\">\n          \u003cbutton class=\"xp-win-btn xp-min-btn\" title=\"Minimize / Expand\">${data.collapsed ? '□' : '_'}\u003c/button>\n          \u003cbutton class=\"xp-win-btn xp-close-btn\" title=\"Delete Note\">✕\u003c/button>\n        \u003c/div>\n      \u003c/div>\n      \u003cdiv class=\"xp-note-menu\">\n        \u003cspan class=\"xp-note-menu-item\">\u003cu>F\u003c/u>ile\u003c/span>\n        \u003cspan class=\"xp-note-menu-item\">\u003cu>E\u003c/u>dit\u003c/span>\n        \u003cspan class=\"xp-note-menu-item\">\u003cu>F\u003c/u>ormat\u003c/span>\n        \u003cspan class=\"xp-note-menu-item\">\u003cu>H\u003c/u>elp\u003c/span>\n      \u003c/div>\n      \u003cdiv class=\"xp-note-body\">\n        \u003ctextarea class=\"xp-note-textarea\" placeholder=\"Type your note here...\">${escapeHtml(data.text)}\u003c/textarea>\n      \u003c/div>\n      \u003cdiv class=\"xp-note-status\">\n        \u003cspan class=\"xp-save-indicator\">Saved\u003c/span>\n        \u003cspan class=\"xp-char-count\">${data.text.length} chars\u003c/span>\n      \u003c/div>\n    `;\n\n    win.addEventListener('mousedown', () => bringToFront(win, data.id));\n\n    const minBtn = win.querySelector('.xp-min-btn');\n    minBtn.addEventListener('click', (e) => {\n      e.stopPropagation();\n      const isCollapsed = win.classList.toggle('collapsed');\n      minBtn.textContent = isCollapsed ? '□' : '_';\n      updateNoteState(data.id, { collapsed: isCollapsed });\n    });\n\n    const closeBtn = win.querySelector('.xp-close-btn');\n    closeBtn.addEventListener('click', (e) => {\n      e.stopPropagation();\n      deleteNote(data.id);\n    });\n\n    const textarea = win.querySelector('.xp-note-textarea');\n    const charCount = win.querySelector('.xp-char-count');\n    const saveIndicator = win.querySelector('.xp-save-indicator');\n\n    let saveTimeout;\n    textarea.addEventListener('input', () => {\n      charCount.textContent = `${textarea.value.length} chars`;\n      saveIndicator.textContent = 'Saving...';\n      \n      clearTimeout(saveTimeout);\n      saveTimeout = setTimeout(() => {\n        updateNoteState(data.id, { text: textarea.value });\n        saveIndicator.textContent = 'Saved';\n      }, 400);\n    });\n\n    const titleBar = win.querySelector('.xp-title-bar');\n    setupDragging(win, titleBar, data.id);\n\n    return win;\n  }\n\n  function bringToFront(win, id) {\n    document.querySelectorAll('.xp-note-window').forEach(w => w.classList.remove('active-window'));\n    win.classList.add('active-window');\n    \n    highestZIndex += 1;\n    win.style.zIndex = highestZIndex;\n    updateNoteState(id, { zIndex: highestZIndex });\n  }\n\n  function setupDragging(win, handle, id) {\n    let startX = 0, startY = 0, initialX = 0, initialY = 0;\n\n    handle.addEventListener('mousedown', dragStart);\n    handle.addEventListener('touchstart', dragStart, { passive: false });\n\n    function dragStart(e) {\n      if (e.target.classList.contains('xp-win-btn')) return;\n\n      const clientX = e.touches ? e.touches[0].clientX : e.clientX;\n      const clientY = e.touches ? e.touches[0].clientY : e.clientY;\n\n      startX = clientX;\n      startY = clientY;\n      initialX = win.offsetLeft;\n      initialY = win.offsetTop;\n\n      document.addEventListener('mousemove', dragging);\n      document.addEventListener('touchmove', dragging, { passive: false });\n      document.addEventListener('mouseup', dragEnd);\n      document.addEventListener('touchend', dragEnd);\n    }\n\n    function dragging(e) {\n      if (e.type === 'touchmove') e.preventDefault();\n\n      const clientX = e.touches ? e.touches[0].clientX : e.clientX;\n      const clientY = e.touches ? e.touches[0].clientY : e.clientY;\n\n      const deltaX = clientX - startX;\n      const deltaY = clientY - startY;\n\n      const newX = Math.max(0, Math.min(window.innerWidth - win.offsetWidth, initialX + deltaX));\n      const newY = Math.max(0, Math.min(window.innerHeight - win.offsetHeight, initialY + deltaY));\n\n      win.style.left = `${newX}px`;\n      win.style.top = `${newY}px`;\n    }\n\n    function dragEnd() {\n      document.removeEventListener('mousemove', dragging);\n      document.removeEventListener('touchmove', dragging);\n      document.removeEventListener('mouseup', dragEnd);\n      document.removeEventListener('touchend', dragEnd);\n\n      updateNoteState(id, {\n        x: parseInt(win.style.left, 10),\n        y: parseInt(win.style.top, 10)\n      });\n    }\n  }\n\n  function updateNoteState(id, partialState) {\n    const notes = getSavedNotes();\n    const index = notes.findIndex(n => n.id === id);\n    if (index !== -1) {\n      notes[index] = { ...notes[index], ...partialState };\n      saveNotes(notes);\n    }\n  }\n\n  function deleteNote(id) {\n    let notes = getSavedNotes();\n    notes = notes.filter(n => n.id !== id);\n    saveNotes(notes);\n    \n    const el = document.getElementById(id);\n    if (el) el.remove();\n  }\n\n  function spawnNewNote() {\n    const notes = getSavedNotes();\n    const newId = 'note-' + Date.now();\n    const count = notes.length + 1;\n    \n    const offset = (notes.length % 6) * 25;\n    const newNote = {\n      id: newId,\n      title: `Note ${count}.txt`,\n      text: '',\n      x: 80 + offset,\n      y: 80 + offset,\n      collapsed: false,\n      zIndex: ++highestZIndex\n    };\n\n    notes.push(newNote);\n    saveNotes(notes);\n\n    const container = document.getElementById('xpNotesContainer');\n    if (container) {\n      const noteEl = createNoteElement(newNote);\n      container.appendChild(noteEl);\n      bringToFront(noteEl, newId);\n      \n      const textarea = noteEl.querySelector('.xp-note-textarea');\n      if (textarea) textarea.focus();\n    }\n  }\n\n  function escapeHtml(str) {\n    return str\n      .replace(/&/g, \"&amp;\")\n      .replace(/\u003c/g, \"&lt;\")\n      .replace(/>/g, \"&gt;\")\n      .replace(/\"/g, \"&quot;\")\n      .replace(/'/g, \"&#039;\");\n  }\n\n  function init() {\n    renderApp();\n    const spawnBtn = document.getElementById('xpSpawnNoteBtn');\n    if (spawnBtn) {\n      spawnBtn.addEventListener('click', spawnNewNote);\n    }\n  }\n\n  if (document.readyState === 'loading') {\n    document.addEventListener('DOMContentLoaded', init);\n  } else {\n    init();\n  }\n})();\n\u003c/script>","previewInEditor":false}}]}</script>
+</head>
+<body>
+    <div class="canvas">
+        
+                <div style="position: absolute; left: 0px; top: 0px; width: 522px; height: 66px; z-index: 491; overflow: hidden;">
+                    <div class="w-full h-full overflow-hidden text-inherit text-center" style="font-family: 'Playfair Display', serif; font-size: 50px;">pilots cool website!</div>
+                </div>
+
+                <div style="position: absolute; left: 0px; top: 61px; width: 150px; height: 25px; z-index: 36; overflow: hidden;">
+                    <div class="w-full h-full overflow-hidden text-inherit text-left" style="font-family: 'Inter', sans-serif; font-size: 16px;">games i like to play
+</div>
+                </div>
+
+                <div style="position: absolute; left: 0px; top: 88px; width: 73px; height: 65px; z-index: 41; overflow: hidden;">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpETStmgJH4QEJZSBgBNiDGUXmxNvygam1uOlgiUoabXnx81PNGE-m7LJyjYh_vYuNCZZvIZprxIy_4dLZX4EdB--4iZUqJ6TuSlRgdMGohg&s=10" alt="Sample Graphic" 
+                        onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/64748b?text=Image+Unavailable';" 
+                        class="w-full h-full rounded-sm" 
+                        style="object-fit: cover; pointer-events: none;" 
+                        draggable="false">
+                </div>
+
+                <div style="position: absolute; left: 77px; top: 102px; width: 167px; height: 40px; z-index: 297; overflow: hidden;">
+                    <div class="w-full h-full overflow-hidden text-inherit text-left" style="font-family: 'Roboto', sans-serif; font-size: 30px;">half life 1&2</div>
+                </div>
+
+                <div style="position: absolute; left: 0px; top: 175px; width: 74px; height: 64px; z-index: 294; overflow: hidden;">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpaxuBSt0hlVHxQ9ddiDrpY5Ll3qjtdU0934ybIWWhMg&s=10" alt="Sample Graphic" 
+                        onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/64748b?text=Image+Unavailable';" 
+                        class="w-full h-full rounded-sm" 
+                        style="object-fit: fill; pointer-events: none;" 
+                        draggable="false">
+                </div>
+
+                <div style="position: absolute; left: 79px; top: 184px; width: 142px; height: 42px; z-index: 296; overflow: hidden;">
+                    <div class="w-full h-full overflow-hidden text-inherit text-left" style="font-family: 'Roboto', sans-serif; font-size: 30px;">portal 1&2</div>
+                </div>
+
+                <div style="position: absolute; left: 2px; top: 256px; width: 70px; height: 48px; z-index: 292; overflow: hidden;">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAc5EDXRdUcd_yUZoirle9sauvnVtvharnzvLP4wZ9fQ&s=10" alt="Sample Graphic" 
+                        onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/64748b?text=Image+Unavailable';" 
+                        class="w-full h-full rounded-sm" 
+                        style="object-fit: fill; pointer-events: none;" 
+                        draggable="false">
+                </div>
+
+                <div style="position: absolute; left: 74px; top: 258px; width: 264px; height: 42px; z-index: 293; overflow: hidden;">
+                    <div class="w-full h-full overflow-hidden text-inherit text-left" style="font-family: 'Roboto', sans-serif; font-size: 30px;">the binding of isaac</div>
+                </div>
+
+                <div style="position: absolute; left: 0px; top: 318px; width: 72px; height: 55px; z-index: 290; overflow: hidden;">
+                    <img src="data:image/jpeg;base64,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" alt="Sample Graphic" 
+                        onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/64748b?text=Image+Unavailable';" 
+                        class="w-full h-full rounded-sm" 
+                        style="object-fit: fill; pointer-events: none;" 
+                        draggable="false">
+                </div>
+
+                <div style="position: absolute; left: 74px; top: 326px; width: 181px; height: 45px; z-index: 291; overflow: hidden;">
+                    <div class="w-full h-full overflow-hidden text-inherit text-left" style="font-family: 'Roboto', sans-serif; font-size: 30px;">doom games</div>
+                </div>
+
+                <div style="position: absolute; left: 0px; top: 374px; width: 338px; height: 50px; z-index: 288; overflow: hidden;">
+                    
+                    <div class="w-full h-full flex text-center justify-center">
+                        <a href="https://steamcommunity.com/profiles/76561199193138062/" class="inline-flex items-center justify-center px-4 py-2 rounded-lg font-medium transition duration-200 h-full w-full bg-blue-600 text-white shadow-sm hover:bg-blue-700" style="font-family: 'Roboto', sans-serif; font-size: 16px;" target="_blank" rel="noopener noreferrer">
+                            and more just check out my steam profile just click here
+                        </a>
+                    </div>
+                </div>
+
+                <div style="position: absolute; left: 0px; top: 668px; width: 242px; height: 46px; z-index: 311; overflow: hidden;">
+                    <div class="w-full h-full overflow-hidden text-inherit text-left" style="font-family: 'Montserrat', sans-serif; font-size: 30px;">im also good at</div>
+                </div>
+
+                <div style="position: absolute; left: 0px; top: 716px; width: 120px; height: 124px; z-index: 312; overflow: hidden;">
+                    <div class="w-full h-full overflow-hidden text-inherit text-left" style="font-family: 'Inter', sans-serif; font-size: 20px;">math
+science
+fixing things
+soldering
+</div>
+                </div>
+
+                <div style="position: absolute; left: 269px; top: 64px; width: 203px; height: 24px; z-index: 133; overflow: hidden;">
+                    <div class="w-full h-full overflow-hidden text-inherit text-left" style="font-family: 'Inter', sans-serif; font-size: 16px;">i love my girl friend arlene!</div>
+                </div>
+
+                <div style="position: absolute; left: 12px; top: 596px; width: 61px; height: 30px; z-index: 286; overflow: hidden;">
+                    
+                    <div class="w-full h-full flex text-center justify-center">
+                        <a href="www.tiktok.com/@king.p819" class="text-blue-600 underline font-medium inline-flex items-center justify-center h-full w-full hover:text-blue-800" style="font-family: 'Inter', sans-serif; font-size: 16px;" target="_blank" rel="noopener noreferrer">
+                            TikTok
+                        </a>
+                    </div>
+                </div>
+
+                <div style="position: absolute; left: 0px; top: 507px; width: 85px; height: 87px; z-index: 270; overflow: hidden;">
+                    <img src="data:image/png;base64,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" alt="Sample Graphic" 
+                        onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/64748b?text=Image+Unavailable';" 
+                        class="w-full h-full rounded-sm" 
+                        style="object-fit: cover; pointer-events: none;" 
+                        draggable="false">
+                </div>
+
+                <div style="position: absolute; left: 85px; top: 508px; width: 85px; height: 87px; z-index: 269; overflow: hidden;">
+                    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIAJQApQMBEQACEQEDEQH/xAAbAAEAAgMBAQAAAAAAAAAAAAACAQMABgcEBf/EAEYQAAIBAwEEAQ8JBQkBAAAAAAABAgMEEQUGEiExUQcTIkFSVGFxgZGTobHB0SM2QnJzdJKy8CQyRGKiFRYXJTM0NVNjFP/EABsBAAMAAwEBAAAAAAAAAAAAAAECAwAEBgUH/8QAMhEBAQACAQICBwcFAAMAAAAAAQACEQMEEgUhEzFBUVJxkRUiMmGBodEUMzSxwSNC8P/aAAwDAQACEQMRAD8A8W6be7tdWbodw7aMGd1nbZgO4dtGA7hqjAe6GqGgjKlGBhlShobcNRaGGRKGhxlcYtDjIkWhtyJHA4yONDQ4yJBocZEi0OMiRaHGmkWig00g0UGRItDjIlsODjd3Z6swZuzVmA7hqjAdw1RgO4dtmA7h2xaGGVKGhhl1RgYZdRaGGVKGhhkSLQ4ypFoYZEi0UGmkWhxkSLQ4yJFocZEg0UGmkWhxkSLKDTSA400tiwcZu7XVmAjDVmDN2aowHcNWYD3Q1RgO4ajgbul7aN0bcuqGhjKXUcDDI40NDjIkcDDKkWhxkSMkUGRItDjTSLQ4yJBooNNItDjIkGig00g0UGmkWigyJbHg4rd2NmDN2WYDuyjAd2WNGbsjgbdmrMB3BKGhhlSLQwyuMWhxkShocZEg0MMiUNFBkSLQ4yJBocaaRaHGRINFBppFlBppBlBppFocZEg0UGmlsuDid3WWYDuyjAdxswZuyjAd2UYG3ZQ0EYxlhc3jxjDZXRsbupHep2lxOL5ONGTXsG3SeXiPXkfUsenX3eN36CXwHGm83F8R9SL06+7xu/QT+AxkSvLxfEfUi9Nv+8bv0E/gOZEjy8XxH1Lz16NW3/3FKpSzy65Bx9pQygOOX4XdU0OMEi0ONNISRQaaRKDIkGhxppFooNNINFBppBooNNLZ8HD911NjQe6FG6Z3WUbo3dZZuh7oxaG3Hd7tF0i41i8VC3WIxw6lR8oLp8fgHx87W6rq8Omw7sv0Pfb5Ss9A2Ut41Lhw692qlSO/Um/Aly8hT1XOPL1fX5pj6vceovLPb+wjLFO0uZR6Xur3g3Xx8E5k88iH+IVn3jcfiiGb7D5fiKH1Q7NfwFx+KIdQfBOX4ih9USz7wufxRG7ZfsXl+Ir7fbnRbz5G8p1KEZ8H16ClB+PGfWjOx9lLPwvqOPzw8/lePaHYyzvrd3uguEKjjvKlCXydTxdD9XtHw5E8spun8Qz48uzn9X7lzmpCUJyhOLjOLxKL5prmmbY3teSbINFBppBocaaRZQaaQZQaaQZQaaQaKDTS2nBwvddJY0Z3WUboe6NGA7soaGGyhrtjbjdH0ynR2Z2XdxUgnV3Ou1F25TfKPrSNk+7ju5Tncuu6vtxfLej5e+53fXVe+u6lzdTc6tR5b6F0LwE+7d0/FxYcWBhgeReZriNurQ0MMattN8xyOqGhxkS37ZbZDTbrR6V3qEZ16teO8kptKC6Fjthcm5zrfEebDmcOPyCr0u4lsttRLRXWlU0+4adPfeXTlLl61j1mP3sd2c2H9Z0vp9ayP3vD1S9KjbX1HUaMUo3OYVcd2uT8q9hThy8tT+F83dg8b7LSmjZG9JItFBppCRQaaQwUGkkGVGmkGhxp6tr3Tgu66CxxD3Ro3Q91lDQRsoaG7rJUY5r00+Tml6x8WXN1g/K3zqgtx0WjCPCMq8U/Im/cbfK6xuc8HN9Qv5NzxogN017NH0m41i8VvbYSSzOb5QXSymG8qHU9Vh02HflbzS0XZ/QLdVL7rM5/9tziTk/BH4IvoLncur6zrMtce/kWLXNlLt9YnK2a/wDW1cY+eUcGbIvReIcf3gf0f4b52vbFW9ai7rROxqbuVR3swmv5X2n6hrY6Txfkwy7OfzPf7f1td0nanVNGtnZ0VRnTjJ4hXg26b7a4NeYPlel1PhvB1GXf6n8vbfIvL64vL6V7cVHOvKSlvdGORQa+HBhx8fo8TyuidUeKls3CTXFV4YfkYvG/euc8L8uo1+TctZtDdAkGig00g0UGkkWUGmkGUKaQaKjSS27dPn/de9uzdM7rN0YDuzcXEJlZQ4j90ZUF+0Uvrx9o+OXnJyfgflbx1QVnSrf7wvyyN7n/AAlz3g399+X/AG5+0ao3S3Q9m6NLRtmHe1Y9nOm69THN9yvNjzm7h5Y7uW67PLqer9Ge/RaBqN7X1G7nc3M3Kcu1nhFdC6ES7t3S8HBhwYGGBeRjFYtp2D1irb30dMqzcrevncT+hPGeHgfHh0lcW8bxbpMcuP0weZ6/zKnqhafG01iFxTjiF1DMuH01z8+V6x5/B+d5OFwfXj/q1RrgMN6rdN6onzZj9tT95mHruV8K/wAn9G5a0bA3RJBooNNINFBp5EWio0kq2ig00jgoNJLcN0+ed17Nm6HusocTO6yjdG3GOBt2U0V+0Uvrr2lMHzJeT8D8rd9v+OlUPvC/LI9Hqfwlz3g399+X/S0Bx4GmN0pdErL/AO7Yn5Di5Wiwl0x5r1Hofi4/K5XF9D1/3vZlc2xw8BrDdZBooNl9TZSjKvtFYqms7lTfk+hJZb/XSVw9dpeI5mPS57+V9zqmVYurYUc5mlObXQuCXv8AMUW8/wADxdZ5fItHfIJe++q6X1RPm1H7an7xsfXcp4T/AJP6Ny9lhukSDKDTSDKDTSDK40mDRQaSQKjTS3TB847r1aGjDKyjdG7rKMBGMcDmVlNFfL0vrr2lMH7xLyfgflbpt7/xdD7wvyyPT6t1gfO5/wAH/v5fL/paG0aQ3SW07Ga1Tt/8tupqMJNujJ8k2+MfLz85u9Ny/wDq3ieK9Hln/wCbA+f8z13Y6dWvK40lwxJ5lQk8Yf8AK/cUz4fPeMnR+LBiY831viUtk9aqT3ZWaprk5Tqwx6m2DHjyvQy8U6UN92/0bbtI0qy2Xsat1dVouo18pWaxhdzFfrJbHHtPO8Tqep5eu5DDA8vYf9tA13UamralVu6i3U+xpxf0YLkvb5Wxe7bdJ0fTnT8Rx/X53zZIcbZ9l0rqhfNqP21P3jly3hH+V+jcwkig3TJBooNJgyo0kgypTSEkUKSQaKDTbd9w+bbvQ7qHEO47ocTO6O4uIxlGOBxso/dkpLmnkfHLTuxNmreNpKf9pbOdfo9luqNZY7axx9TZ7XUHpOHZ87muhy9B1XZl8rQGuB5g3TwaKDG+vp+02p2EI01UjWprlGss48vM2uPnzxNWhz+G8HM71p/K9lTbi+3cU7S3hLum5P4Fv6ltfHwXi355La9qepXmp1FO8rynj92K4Rj4kDvcvXelwdNxcBrjP5+t4JIYbYvRpVlPUNTtrWCy6lRZ8S4t+YrjR6nmOLhyzfYW6dUm6jT0y2tE+yq1d7Hgivi0UvC8F415ss/YH+7nTKDdGkWONJKtlRp5QaKjSSEkUGkwaKlJt83T5pu292OBm7NxcQzbg4+AO4jFxGGcYNDjG2bZTV4U4LTrqSUX/oylyefo/A9boepNejy/S8PxLpFfTYHz/mp1zZWrGpOvpcd+DeXRzhx8XSvANzdIj3YfSfo/FMdGHN9bXatheU5bs7Sumu11tmt2Znkl62PUcORsyPrVOyuu9a/o2UMcvdN6bi+I+sHZXfetf0bKBl7rPTcXxH1g7K770r+ifwKg+6Pp+L4j611poWqXs1GhZVeP0px3YrxtlcccqfJ13T8ZvLM/3bromjWmzFnVvb6tB1t3s6r5QXcx/XEuHb67n+q6vk63M48Dy9382ibQ6pU1jUp3M1iC7GlHuYrl5e2Zu6HoumOm4jD2+t+d8tjltsGUGm1bKjSYsqUmrkUKbBlSk3Qt0+Z7qbocTN2bi4h3NuDiNuO4SiGcaqURhnGEkUGa+tp20l9ZRVOpi5prglUfZLym/wAPW8mHk+Zedz+GcXK7Puv/AN7L60ds7fdW/Z10+3uyi0bh1+L6y0Xwbk9mRY9trRfwlz/T8Rv6zH3WfY3L8R+9H9+LTvO5/p+I51ePus+xuX4j94vbq07yuvPH4jf1GPuj9i8vxH73lu9vI4/ZLCW901aiWPIs+0b03uKmHgjv7+f0LVdW1e91Wqp3lVyjH92nHhGPk94O9b1+m6Xi6c1gefv9t81oYtuDKFkGVJWDRQpJBlSllVsqUmLKDSbo+6fMpdxcTIjFwDNurlEYYjVyiMNQaqSGnGrkhicatoqM1XJFRjVyRUY1ckUxY1bLEauRXGMGVI1bKkYSRQjBlCDBlcaWVWypSYMrjSYFCm3Td0+YbtbcXEO4jBxDuYYSQ041UkMNQaqSGGcaqSGJxqZIoNQauSK4sauRXFjVyLDNVyK4sauRUjVsqWVcixEgyhGDKEatlCnlCRUosGVKbBlSk3Ut3wHy7do7i4+AO4mVXKIxONXJDDONVNDFQqZoYnKqSHKpUzQ5UKqRXFmqpFcY1bRYjVyRUmq5ItjZVyRUjVsqRKtlSMGUIwZUkYSKlFgyhSYFSm3WN0+V7vM3CURhiNVOI041UkOVCpkhyoNTNDFUamZQqFTIYqFTIqVKqRXGNXIsRq5ciuM1Wy2NlXIsRqmUIkJFSMGVIwkUxkatlSllBlcaTBlSk3XWkfKbx91ckMTjUyQ5VKmY5UKiQ5UKmY5VKmY5UKiY5UKqXMcqFXItjNVS5liNVItjGrkVI1cixGrkVI1cipEgyhGEiuMrBlCjlVsrjSYMqU2//9k=" alt="Sample Graphic" 
+                        onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/64748b?text=Image+Unavailable';" 
+                        class="w-full h-full rounded-sm" 
+                        style="object-fit: cover; pointer-events: none;" 
+                        draggable="false">
+                </div>
+
+                <div style="position: absolute; left: 77px; top: 587px; width: 102px; height: 50px; z-index: 285; overflow: hidden;">
+                    
+                    <div class="w-full h-full flex text-center justify-center">
+                        <a href="https://www.instagram.com/pilo.tlouieking?stkn=MXh3amVsZWM4eWFqcQ%3D%3D&utm_source=qr" class="text-blue-600 underline font-medium inline-flex items-center justify-center h-full w-full hover:text-blue-800" style="font-family: 'Inter', sans-serif; font-size: 16px;" target="_blank" rel="noopener noreferrer">
+                            ig
+                        </a>
+                    </div>
+                </div>
+
+                <div style="position: absolute; left: 169px; top: 509px; width: 92px; height: 85px; z-index: 271; overflow: hidden;">
+                    <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHBgkIBwgKCgkLDRYPDQwMDRsUFRAWIB0iIiAdHx8kKDQsJCYxJx8fLT0tMTU3Ojo6Iys/RD84QzQ5OjcBCgoKDQwNGg8PGjclHyU3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3Nzc3N//AABEIALUAwgMBIgACEQEDEQH/xAAcAAEBAAIDAQEAAAAAAAAAAAAABwQGAwUIAgH/xAA7EAABAwMCAwYEAwUJAQAAAAAAAQIDBAURBgcSITEiQVFhcZETFDKBFUKhCFJykrEjM2OTosHC0vAW/8QAGwEBAAEFAQAAAAAAAAAAAAAAAAQBAgMGBwX/xAAsEQEAAgECBAMIAwEAAAAAAAAAAQIDBBEFEiExBkFhExRRcZGh0fAyscEi/9oADAMBAAIRAxEAPwCqgA409IAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABx1NRDSwPnqpo4YY0y+SRyNa1PFVXkhpV13Y0pbnuZHVT1r2rhUpIsp/M5URfspIwaTPqJ2xUm3yhbNoju3kExTezT/F2rdc0b4oyNf+ZsFl3K0rd3tijuKU0zukdW34f24l7OfuSMnCtbirzWxTt8t/6UjJWfNtwCKioiouUXooPPXgAAAAAAAAAAAAAAAAAAAAAAAB1GqtRUWmLPLcbg7LW9mOJq9qV69Gp/7kmTtyBbiVVXrbciCwULsxwTJSQ96Ncqp8R6+ioufJh6vB+H+/amKW/jHWf31Y8l+Wu7Gii1du3enNi7NHE7OFVW09Knd6u91X06U6w7GacoomreJ6q5T47ScXwY/sje1/qKBpqxUOm7LTWq2x8MEDcK5fqkd3ud4qp2h0zFiphpFMcbRCFMzPWWjO2i0KrcJY8eaVc//c1TUuw9unikl03cJqWfq2CqXjiXyRyJxN9V4iyAyKPMVh1TqPbW8/g1/gmfRMVOOlkXKtYv54ndMeXReacl5peqCtprjRQVtFK2annYj43t6KimFuho2DWGnJYmxt/EqZqyUcuOaO72Z8HYx7L3Eu2D1BIslZp+d6uj4fmabK/TzRHtT1yi48neJqniLhWO2KdVija0d/WPj84SMOSd+WVlABoqUAAAAAAAAAAAAAAAAAAAAdff7zR6ftFRc7g5yQQNyqNTLnKvJGoniql1KWvaK1jeZU7OwITsa1LrufPcJkzIyCepTPc5yo1f0ep9Vu9t4fUuWitdBHTdzJuN78fxI5E/Qfs5uRNc1aL+a2yIn+ZGb94f4Zn0XtLZo2m223X57/4iZrxbbZ6QABsrCAAAeabFH+Fb7TQM7Mf4jUsRqLy4XI/CfqnseljyprC8S2bdm6XWlZHJLTVz1a2TPCqomOeCPq8U5dPfHHeYmPrCtZ2mJejwRaw72Va1jGX+3U3yz3YdLSI5ro08eFVXi/Qs0E0dRDHNA9skUjUex7VyjmqmUVDmGt4dqNFMRmrtv2+CdW8W7PsAEFeAAAAAAAAAAAAAAAAE83zpKip0WySnRXMp6tksyJ3M4XNz7uQoZ8TwxVEMkFRGyWGRqsfG9uWuavJUVO9CTo9R7tqKZtt+Wd1to5o2aDsNetPVOmG2FW08d0a96zxStTNUiqqo5M/VhuEx1Th8Df7Zo3T1ovLrva7XDR1joliVYMsZwqqL9CLwp0TuIhuHtklhgmv2nqlY6WnVJH073qj4efJWP7+eOS8/NTfNitX3jU1ur6W8u+YWg+GkdU5O29HcXJy96pw9evPmdR0etw6zF7TDO8f0g2rNZ2lUQAS1oAABrtJofTNJdam6x2infXVMzppJpkWVUe5cqreLKN5qvTBsRBN+dZXymvT9OUkrqS3/AAGvesS4fUcXXLv3eqYTrzznuDE/aAv9huddQ0Nq+DUVtGr0qamHGGouMR5T6l5Z8unVVxT9EUtRRaQs9NWNc2eOkYj2u6t5dF9Ohpe3+1NPaXwXO/vZVVrcPjp2LmKJe5VX8zk9k8+SlPNB8Q8Vw6ua4cPWKzvv6+iXhxzXrIADWGcAAAAAAAAAAAAAAAACrhMryQ6zUl9otN2ia53FzkhjwiNYmXPcvRqJ4kQvOstV7h1a2iyUckdPJ1paXKq5v+I/ly9m8+Z6vDeEajXzvTpXzmf3qx3yRRnbs63TUVTHp3T6uqKVsqJJJDl3zMucNaxE+pqL7r06Iq2PbDSf/wAfpSChm4VrZnLPVuTp8RcdlPJERE+yr3nQ7XbWU+lFbc7s6OqvCp2OFMspkVOaN8XeLvsneq0s6No9Jj0eGMOPtH39UO1ptO8gAJS0AAAlW/OjJL5aIr5bouOttzVSZjU7UkHVfVWrlceCuKqAIltBryG4UMNgu0yNr4G8FNI9f79idG5/eROXmnnkqJMNzNnnz1El50dG1kqu45aBF4Uz3uiXonjw+3chrWmN1bxYJ0tmq6WepjiXge+RqtqYv4kX6vvhfM03i/h29rzm0vn3r+Px9EnHm6bWXQHFR1UFbSQ1VLIkkEzEkjenRzVTKKcppsxMTtKQAAoqAAAAAAAAAAAAANP3V05Vam0q6noO1VU8zaiOPOPiYRUVvrhy480Jrt1ubNoWCSzXSzI+nSVXPdG34VQx3fxIv1eGFwqePRC9HU3zTVlv7cXe2wVLsYSRzcPRPJyYVPc2Lg/HfcaeyyV3r36d4/LDkxc07wydHbgaf1g98NpqJG1TGcb6aePgejeme9F69yqbSeWquG87U62dXUVOj6ZHPbTSTNV0c0TvyqqY7Scs80XKZ6ddpg/aAr2uT5jT9M9PCOocz+qKb/hzUzY4yUneJRJiYnaV8BOtJbw6c1BMylq/iWurfhGtqVRY3L4I9P8AdEKKZFAA4qmogpKeSoqpo4YI2q58kjka1iJ1VVXkiAcoJTqTfOxW6Z8Fmo5ro9i4WXi+FEvoqoqr7Y8zVajf+7Oa75ayUUa47KySvfhfPGMgUXVm6+mtM1k1DLJPWVsK8MkNKzPA7wVyqie2cET1jqe6bo32kgt9mZG+JFbDHEnHIqKqZV7+XJPsiZUzdvdJT621DV3zUFM9bdJJJNKvONs8r1VcNVOeEVVVcL3IhcbVabdZ4FgtdFBSRquXNhYjeJfFV719TXuKeIMWjvOLHHNf7R+/D7s1MU26y4tM2tbLp+32x8iSPpoGxuenRXInPHlk7IA59e83tN7d56pcdAAFioAAAAAAAAAAAAAAAD8c1r2q17Uc1eqKmUUwaqx2irYrKq10MzV6pJTsd/VDPBdW9q/xnZTZL9YbP2+4I6p049tBU9VgeqrC/wBO9q+6eSGoUd63I2/b8q5lX8lEnZZPF8eBE8GvTPCnkip6F/B72i8R6rTxy3/7j17/AF/O7FbDWeyFrvrq2RqRspLSj15IrYJFXP8AOYU9DuLuJMxLj818rxZRalvy9OzwVG4Ti8MoiqegcJnOOYJ2bxZltXbHjiJ9Z3/yFsaePOWhaV2qsNmia+4xNulYv1Pnb/Zt8ms6e+fsbjBabbTNa2nt1HE1vJEjga1E9kMwGt59ZqNRbmy3mZ/fJmisR2OiYQAEVcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAD//Z" alt="Sample Graphic" 
+                        onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/64748b?text=Image+Unavailable';" 
+                        class="w-full h-full rounded-sm" 
+                        style="object-fit: cover; pointer-events: none;" 
+                        draggable="false">
+                </div>
+
+                <div style="position: absolute; left: 121px; top: 587px; width: 200px; height: 50px; z-index: 282; overflow: hidden;">
+                    
+                    <div class="w-full h-full flex text-center justify-center">
+                        <a href="https://www.snapchat.com/add/pilot_king2026?share_id=k3qkUL2jQLazgKIkizEaUQ&locale=en_US" class="text-blue-600 underline font-medium inline-flex items-center justify-center h-full w-full hover:text-blue-800" style="font-family: 'Inter', sans-serif; font-size: 16px;" target="_blank" rel="noopener noreferrer">
+                            snap
+                        </a>
+                    </div>
+                </div>
+
+                <div style="position: absolute; left: 262px; top: 508px; width: 83px; height: 87px; z-index: 330; overflow: hidden;">
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJ4AAACUCAMAAABVwGAvAAAAaVBMVEX///9XZexMXOvM0PnEyPhVY+xRYOxPXuxKWuvo6fzj5fvR1Pn5+f78/P/y8/3Z2/qTm/Jzfu+7wPZ/ifCCjPCaovNjcO5pde6gqPN6hPDs7v3c3/uLlPGnrfRBUutdau2yuPU4S+qts/W8b1KmAAAE40lEQVR4nO2b2ZKqMBCGZckiEZBFdtHx/R/yBMeFLDglSZ/iIv/F1BRK+OwmSXcn2e2cnJycnJycnJycnJycnJycViju9lGfsmCF0rSP9kkMCBflp7auPOyvEMXYq+rilEcwbElYUx8jhLzV4jcTn2ZhYp8uKAheDzYXxkVgGS5pELEDN4mgxqoBu4zag5tEs84eXVJapuN8hTX7JbZtN8nPbPGdfPt0nO9khy6w1GNlYSv9t8ug8Fob7s2B6DhfbgHvAoaHKnO6/QhF53nj3hjvCjCoPEWvpnTxEcy3/OU7msZXXWYQofwlZDy1RTUkXmUa/PUVHJ3nVb0hHgM0HjcfM8UD7Bm8b5jihX9GoQjrw2h++U/L09AU73O0gumIinN4Vn4E4RcLNNLPxveN8ZathwipsoZN8/qhlL5GygO/nLAmqwhZNiIBw8P+Zcj7Z8wRjD7leZxPuCj/b3wGS0mfD5dFG4LhkUsezYb8uCzPechSLhbk57Kcfxbll6VWgPDw7btmrnoHA+H5w5eTZTxouxgMHkJfx7mJtroAg+efv2/orAvMQPBWJQlJoem+IHh0VYoVaMwHgUfqdU3VmqYA8Nbmp5p8GQAPr62OaN4+CLzVyb1qPvt4uD2sbevQynz28UaD1D6Xc2breOhikFwlFwSMRxqT1hq5NevONap6BcDORbVR4txJWbNtPGrkW+5dCounyfyiNNUM1EmaakoADBQPESUM7Qce/tU36Xp8q3mANyhFgFhMLi3jkUL5nE72QGMpvJNdOU4YVE0UCwKIR+UUY189JgIyzC8Pj7uwUuO5UUA8JA0r8fH1tHHmyP41OxC5gifOu3bxlIJX954G6CzAf5tImWSiCoHhKVF8+p5Ef+sCd81rBmMq3pEIYYFlvFJy1WycwMUbbxbYySNRLJQ77OIpGVr/xluwnjJQNnB4SiV9/u7N5pNm9u7JawNCpd8yntzaYXi58Wfec39eLh/k4DUExFOmtPRpPnF98bmGiS6pfAcDxFMetst/i2O0Fpy4r+8QmKqhdQ+HhzSLTEGLCalOkg8Pp4oQ3GqCwz3cuKfD2yVBGGpikygMA13G+b/xvpTD2yieZwPPA8PzLWzPinwwPGVYjv8saBzk6B9yWJbGse44sI+ABzYcpYAvgMMjpfjy7UtKsmu3UKWPu2vmU+UWuIjFI57k3nRAP17WsEgagZOINZn3gwZxGoyZB5kKedg7ic46pA0hBFXt8Zazfs/Vs/x2bCvELzep6Pru6IklNPs1Fopz0VKHacUCYUJHLvr715/SWYREuCRHcvUboDqKSCZ4WLtg8ftLhOCaterSJMjCAfJr9rIgW4Kb9PodCat1y5JAa2qYFA8XJ4X2C4+nP6rkSV742jVTc7yF1XBMsnsn+bxJ6O7e7pQt7YoFw+MuptyEofd5v8AlzAtMF79jvFgffPAdHzv+oOMff1qrN99huPGNIhvfZrPxTUpiRcmyUG0aQG58g1x8tLhXXpZSnPxe296cufWtrYAbg/HKVX9B4ba3VSfKIrEtOiub0je+pX/rByJgjpNQa8dJdh3AYZzS4mGmbR9l2vpBsN29hrzdY3Q7W4cQsU9riEOIk55HODFdcYST5xxV3YId4bzL4AAsmw7ALlWznJycnJycnJycnJycnJycnD7rH6jjTMGIoK63AAAAAElFTkSuQmCC" alt="Sample Graphic" 
+                        onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/64748b?text=Image+Unavailable';" 
+                        class="w-full h-full rounded-sm" 
+                        style="object-fit: cover; pointer-events: none;" 
+                        draggable="false">
+                </div>
+
+                <div style="position: absolute; left: 262px; top: 601px; width: 83px; height: 22px; z-index: 280; overflow: hidden;">
+                    <div class="w-full h-full overflow-hidden text-inherit text-left" style="font-family: 'Inter', sans-serif; font-size: 16px;">pilotishere</div>
+                </div>
+
+                <div style="position: absolute; left: 185px; top: 59px; width: 59px; height: 24px; z-index: 215; overflow: hidden;">
+                    <div class="w-full h-full overflow-hidden text-inherit text-left" style="font-family: 'Inter', sans-serif; font-size: 16px;">he/him</div>
+                </div>
+
+                <div style="position: absolute; left: 295px; top: 76px; width: 184px; height: 61px; z-index: 385; overflow: hidden;">
+                    <div class="w-full h-full overflow-hidden text-inherit text-left" style="font-family: 'Montserrat', sans-serif; font-size: 50px;">I like:
+</div>
+                </div>
+
+                <div style="position: absolute; left: 299px; top: 137px; width: 183px; height: 23px; z-index: 383; overflow: hidden;">
+                    <div class="w-full h-full overflow-hidden text-inherit text-left" style="font-family: 'Inter', sans-serif; font-size: 16px;">retro nintendo consoles</div>
+                </div>
+
+                <div style="position: absolute; left: 299px; top: 164px; width: 84px; height: 22px; z-index: 386; overflow: hidden;">
+                    <div class="w-full h-full overflow-hidden text-inherit text-left" style="font-family: 'Inter', sans-serif; font-size: 16px;">homebrew
+</div>
+                </div>
+
+                <div style="position: absolute; left: 300px; top: 186px; width: 70px; height: 26px; z-index: 387; overflow: hidden;">
+                    <div class="w-full h-full overflow-hidden text-inherit text-left" style="font-family: 'Inter', sans-serif; font-size: 16px;">modding</div>
+                </div>
+
+                <div style="position: absolute; left: 300px; top: 211px; width: 152px; height: 23px; z-index: 388; overflow: hidden;">
+                    <div class="w-full h-full overflow-hidden text-inherit text-left" style="font-family: 'Inter', sans-serif; font-size: 16px;">chilling with friends
+</div>
+                </div>
+
+                <div style="position: absolute; left: 301px; top: 233px; width: 87px; height: 21px; z-index: 389; overflow: hidden;">
+                    <div class="w-full h-full overflow-hidden text-inherit text-left" style="font-family: 'Inter', sans-serif; font-size: 16px;">computers</div>
+                </div>
+
+                <div style="position: absolute; left: 352px; top: 504px; width: 448px; height: 227px; z-index: 495; overflow: hidden;">
+                    <img src="https://cdn.discordapp.com/attachments/1422433756601384993/1555846981623087225/2026-10-03_00.39.16.png?backend=b2&ex=6ac202ea&is=6ac0b16a&hm=8e7d3f2249ca8627645b8e37d484bda62f2876e25e39fd3979849303011aade8&" alt="Sample Graphic" 
+                        onerror="this.onerror=null;this.src='https://placehold.co/600x400/e2e8f0/64748b?text=Image+Unavailable';" 
+                        class="w-full h-full rounded-sm" 
+                        style="object-fit: cover; pointer-events: none;" 
+                        draggable="false">
+                </div>
+
+                <div style="position: absolute; left: 585px; top: 481px; width: 215px; height: 24px; z-index: 496; overflow: hidden;">
+                    <div class="w-full h-full overflow-hidden text-inherit text-left" style="font-family: 'Inter', sans-serif; font-size: 16px;">minecraft (tainted cain skin)</div>
+                </div>
+
+                <div style="position: absolute; left: 534px; top: 730px; width: 263px; height: 24px; z-index: 494; overflow: hidden;">
+                    <div class="w-full h-full overflow-hidden text-inherit text-left" style="font-family: 'Inter', sans-serif; font-size: 16px;">im good at making minecraft skins
+</div>
+                </div>
+
+                <div style="position: absolute; left: 0px; top: 436px; width: 40px; height: 20px; z-index: 488; overflow: hidden;">
+                    <div class="w-full h-full overflow-hidden" style=""><!-- Floating Local Time & Status Corner Widget -->
+<div class="status-widget">
+  <div class="status-header">
+    <span class="status-indicator">
+      <span class="status-dot"></span>
+      <span class="status-ping"></span>
+    </span>
+    <span class="status-text" id="statusText">🟢 Loading...</span>
+  </div>
+  <div class="time-container">
+    <span class="time-clock" id="localClock">00:00:00 AM</span>
+    <span class="time-zone" id="timeZone">PST</span>
+  </div>
+</div>
+
+<style>
+.status-widget {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 16px;
+  background: rgba(22, 27, 34, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.36);
+  color: #e6edf3;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 13px;
+  user-select: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.status-widget:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+}
+
+.status-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-indicator {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10px;
+  height: 10px;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #238636;
+  border-radius: 50%;
+}
+
+.status-ping {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #2ea043;
+  opacity: 0.75;
+  animation: status-pulse 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes status-pulse {
+  75%, 100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+.status-text {
+  font-weight: 600;
+  color: #f0f6fc;
+}
+
+.time-container {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  color: #8b949e;
+  font-size: 12px;
+}
+
+.time-clock {
+  font-family: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, monospace;
+  font-weight: 500;
+  color: #58a6ff;
+}
+
+.time-zone {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+</style>
+
+<script>
+(function() {
+  // Set your target IANA Timezone string (e.g., 'America/Los_Angeles', 'America/New_York', 'Europe/London')
+  const USER_TIMEZONE = 'America/Los_Angeles';
+
+  function updateWidget() {
+    const clockEl = document.getElementById('localClock');
+    const tzEl = document.getElementById('timeZone');
+    const statusEl = document.getElementById('statusText');
+
+    const now = new Date();
+
+    // Format current time for your target timezone
+    const timeFormatter = new Intl.DateTimeFormat('en-US', {
+      timeZone: USER_TIMEZONE,
+      hour: 'numeric',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: true
+    });
+
+    const hourFormatter = new Intl.DateTimeFormat('en-US', {
+      timeZone: USER_TIMEZONE,
+      hour: 'numeric',
+      hour12: false
+    });
+
+    if (clockEl) {
+      clockEl.textContent = timeFormatter.format(now);
+    }
+
+    // Get time zone abbreviation (e.g. PST, EST, GMT)
+    const tzNameFormatter = new Intl.DateTimeFormat('en-US', {
+      timeZone: USER_TIMEZONE,
+      timeZoneName: 'short'
+    });
+    const parts = tzNameFormatter.formatToParts(now);
+    const tzName = parts.find(p => p.type === 'timeZoneName')?.value || 'LOCAL';
+    if (tzEl) {
+      tzEl.textContent = tzName;
+    }
+
+    // Automatically toggle status based on local time
+    const hour = parseInt(hourFormatter.format(now), 10);
+    if (statusEl) {
+      if (hour >= 0 && hour < 8) {
+        statusEl.textContent = '🌙 Probably Sleeping';
+      } else if (hour >= 8 && hour < 18) {
+        statusEl.textContent = '💻 Working / Coding';
+      } else {
+        statusEl.textContent = '🎮 Gaming / Chilling';
+      }
+    }
+  }
+
+  updateWidget();
+  setInterval(updateWidget, 1000);
+})();
+</script></div>
+                </div>
+
+                <div style="position: absolute; left: 0px; top: 975px; width: 143px; height: 25px; z-index: 481; overflow: hidden;">
+                    <div class="w-full h-full overflow-hidden" style=""><button onclick="playRetroSound('coin')">🪙 Coin</button>
+<button onclick="playRetroSound('jump')">🚀 Jump</button>
+
+<script>
+function playRetroSound(type) {
+  const ctx = new (window.AudioContext || window.webkitAudioContext)();
+  const osc = ctx.createOscillator();
+  const gain = ctx.createGain();
+  osc.connect(gain);
+  gain.connect(ctx.destination);
+
+  const now = ctx.currentTime;
+  if (type === 'coin') {
+    osc.type = 'square';
+    osc.frequency.setValueAtTime(987.77, now); // B5
+    osc.frequency.setValueAtTime(1318.51, now + 0.08); // E6
+    gain.gain.setValueAtTime(0.1, now);
+    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
+    osc.start(now);
+    osc.stop(now + 0.3);
+  } else if (type === 'jump') {
+    osc.type = 'square';
+    osc.frequency.setValueAtTime(150, now);
+    osc.frequency.exponentialRampToValueAtTime(600, now + 0.15);
+    gain.gain.setValueAtTime(0.1, now);
+    gain.gain.exponentialRampToValueAtTime(0.01, now + 0.15);
+    osc.start(now);
+    osc.stop(now + 0.15);
+  }
+}
+</script></div>
+                </div>
+
+                <div style="position: absolute; left: 0px; top: 955px; width: 66px; height: 20px; z-index: 469; overflow: hidden;">
+                    <div class="w-full h-full overflow-hidden text-inherit text-left" style="font-family: 'Inter', sans-serif; font-size: 10px;">click on them</div>
+                </div>
+
+                <div style="position: absolute; left: 48px; top: 433px; width: 40px; height: 20px; z-index: 489; overflow: hidden;">
+                    <div class="w-full h-full overflow-hidden" style=""><script>
+(function() {
+  const code = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+  let index = 0;
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key.toLowerCase() === code[index].toLowerCase()) {
+      index++;
+      if (index === code.length) {
+        alert('hey you found a secret.');
+        index = 0;
+      }
+    } else {
+      index = 0;
+    }
+  });
+})();
+</script></div>
+                </div>
+
+                <div style="position: absolute; left: 482px; top: 0px; width: 318px; height: 424px; z-index: 422; overflow: hidden;">
+                    <div class="w-full h-full overflow-hidden" style=""><!-- Dark Windows XP Paint 8x8 Pixel Art Widget with Direct Send -->
+<div class="xp-window">
+  <!-- Title Bar -->
+  <div class="xp-title-bar">
+    <div class="xp-title-text">
+      <svg class="xp-app-icon" viewBox="0 0 16 16" width="14" height="14">
+        <path fill="#ffd700" d="M1 13l3-3 2 2-3 3H1v-2z"/>
+        <path fill="#58a6ff" d="M11 2l3 3-7 7-3-3 7-7z"/>
+        <circle cx="12" cy="4" r="3" fill="#f85149" opacity="0.8"/>
+      </svg>
+      untitled - Paint
+    </div>
+    <div class="xp-title-controls">
+      <button class="xp-win-btn" title="Minimize">_</button>
+      <button class="xp-win-btn" title="Maximize">□</button>
+      <button class="xp-win-btn xp-close-btn" id="xpResetBtn" title="New / Reset Canvas">✕</button>
+    </div>
+  </div>
+
+  <!-- Menu Bar -->
+  <div class="xp-menu-bar">
+    <span class="xp-menu-item" id="xpNewMenu"><u>F</u>ile</span>
+    <span class="xp-menu-item"><u>E</u>dit</span>
+    <span class="xp-menu-item"><u>V</u>iew</span>
+    <span class="xp-menu-item"><u>I</u>mage</span>
+    <span class="xp-menu-item"><u>C</u>olors</span>
+    <span class="xp-menu-item"><u>H</u>elp</span>
+  </div>
+
+  <!-- Main Workspace -->
+  <div class="xp-workspace">
+    <!-- Left Toolbox -->
+    <div class="xp-toolbox-container">
+      <div class="xp-toolbox" id="xpToolbox">
+        <button class="xp-tool-btn" data-tool="freeform" title="Freeform Select">✂️</button>
+        <button class="xp-tool-btn" data-tool="select" title="Select">🔲</button>
+        <button class="xp-tool-btn" data-tool="eraser" title="Eraser / Color Eraser">🧹</button>
+        <button class="xp-tool-btn" data-tool="bucket" title="Fill With Color">🪣</button>
+        <button class="xp-tool-btn" data-tool="eyedropper" title="Pick Color">🧪</button>
+        <button class="xp-tool-btn" data-tool="zoom" title="Magnifier">🔍</button>
+        <button class="xp-tool-btn active" data-tool="pencil" title="Pencil">✏️</button>
+        <button class="xp-tool-btn" data-tool="brush" title="Brush">🖌️</button>
+        <button class="xp-tool-btn" data-tool="airbrush" title="Airbrush">💨</button>
+        <button class="xp-tool-btn" data-tool="text" title="Text">A</button>
+        <button class="xp-tool-btn" data-tool="line" title="Line">╱</button>
+        <button class="xp-tool-btn" data-tool="curve" title="Curve">〰️</button>
+        <button class="xp-tool-btn" data-tool="rect" title="Rectangle">▭</button>
+        <button class="xp-tool-btn" data-tool="polygon" title="Polygon">⬡</button>
+        <button class="xp-tool-btn" data-tool="ellipse" title="Ellipse">◯</button>
+        <button class="xp-tool-btn" data-tool="rounded" title="Rounded Rectangle">▢</button>
+      </div>
+      <!-- Tool Options Box -->
+      <div class="xp-tool-options" id="xpToolOptions">
+        <div class="xp-option-preview">8x8 Grid</div>
+      </div>
+    </div>
+
+    <!-- Canvas Viewport -->
+    <div class="xp-canvas-viewport">
+      <div class="xp-canvas-frame">
+        <div class="xp-pixel-grid" id="xpPixelGrid"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Color Palette -->
+  <div class="xp-palette-section">
+    <!-- Current Color Preview Box -->
+    <div class="xp-color-preview-box">
+      <div class="xp-color-bg" id="bgColorPreview" title="Background / Canvas Color"></div>
+      <div class="xp-color-fg" id="fgColorPreview" title="Foreground / Active Color"></div>
+    </div>
+
+    <!-- 28-Color XP Palette Grid -->
+    <div class="xp-palette-grid" id="xpPaletteGrid"></div>
+  </div>
+
+  <!-- XP Drawing Send Bar -->
+  <div class="xp-send-bar">
+    <input type="text" id="xpSenderName" placeholder="Your name / handle" maxlength="20" />
+    <button id="xpSendBtn" class="xp-tool-btn xp-send-btn">✉️ Send Drawing</button>
+  </div>
+
+  <!-- Status Bar -->
+  <div class="xp-status-bar">
+    <span class="xp-status-pane xp-status-main" id="xpStatusText">Pencil tool active. Click or drag on canvas.</span>
+    <span class="xp-status-pane xp-status-coords" id="xpCoords">1, 1</span>
+    <span class="xp-status-pane xp-status-dim">8x8 px</span>
+  </div>
+</div>
+
+<style>
+/* Dark XP Windows Container */
+.xp-window {
+  width: 320px;
+  background-color: #272c36;
+  border: 2px solid #3c4454;
+  border-radius: 6px 6px 2px 2px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), inset 1px 1px 0 rgba(255, 255, 255, 0.1);
+  font-family: Tahoma, "Segoe UI", Geneva, sans-serif;
+  font-size: 11px;
+  color: #e1e6ed;
+  user-select: none;
+  -webkit-user-select: none;
+  overflow: hidden;
+}
+
+/* XP Title Bar */
+.xp-title-bar {
+  background: linear-gradient(180deg, #0058e6 0%, #003bb3 50%, #002699 51%, #0040cc 100%);
+  padding: 3px 5px 3px 7px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #ffffff;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
+}
+
+.xp-title-text {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+}
+
+.xp-title-controls {
+  display: flex;
+  gap: 2px;
+}
+
+.xp-win-btn {
+  width: 18px;
+  height: 18px;
+  background: linear-gradient(180deg, #3c82f8 0%, #0a4ecb 100%);
+  border: 1px solid #ffffff;
+  border-radius: 3px;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: bold;
+  line-height: 14px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.xp-win-btn:active {
+  background: #0a4ecb;
+}
+
+.xp-close-btn {
+  background: linear-gradient(180deg, #f27261 0%, #d92d18 100%);
+}
+
+.xp-close-btn:hover {
+  background: linear-gradient(180deg, #ff8573 0%, #f03520 100%);
+}
+
+/* Menu Bar */
+.xp-menu-bar {
+  background-color: #272c36;
+  padding: 2px 6px;
+  display: flex;
+  gap: 12px;
+  border-bottom: 1px solid #1c2027;
+}
+
+.xp-menu-item {
+  color: #c5cbd5;
+  cursor: pointer;
+  padding: 1px 3px;
+}
+
+.xp-menu-item:hover {
+  background-color: #0a4ecb;
+  color: #ffffff;
+}
+
+/* Workspace Layout */
+.xp-workspace {
+  display: flex;
+  background-color: #1f232b;
+  padding: 4px;
+  gap: 4px;
+  border-top: 1px solid #3c4454;
+}
+
+/* Left Toolbox */
+.xp-toolbox-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.xp-toolbox {
+  display: grid;
+  grid-template-columns: repeat(2, 25px);
+  gap: 1px;
+  background-color: #272c36;
+  padding: 1px;
+  border-top: 1px solid #181b21;
+  border-left: 1px solid #181b21;
+  border-right: 1px solid #434b5c;
+  border-bottom: 1px solid #434b5c;
+}
+
+.xp-tool-btn {
+  width: 25px;
+  height: 25px;
+  background: #272c36;
+  border-top: 1px solid #434b5c;
+  border-left: 1px solid #434b5c;
+  border-right: 1px solid #181b21;
+  border-bottom: 1px solid #181b21;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+}
+
+.xp-tool-btn:active, .xp-tool-btn.active {
+  background: #181b21;
+  border-top: 1px solid #101216;
+  border-left: 1px solid #101216;
+  border-right: 1px solid #3c4454;
+  border-bottom: 1px solid #3c4454;
+  box-shadow: inset 1px 1px 1px rgba(0,0,0,0.5);
+}
+
+.xp-tool-options {
+  width: 51px;
+  height: 48px;
+  background-color: #272c36;
+  border-top: 1px solid #181b21;
+  border-left: 1px solid #181b21;
+  border-right: 1px solid #434b5c;
+  border-bottom: 1px solid #434b5c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.xp-option-preview {
+  font-size: 9px;
+  color: #8b949e;
+  text-align: center;
+}
+
+/* Canvas Viewport */
+.xp-canvas-viewport {
+  flex-grow: 1;
+  background-color: #121418;
+  border-top: 2px solid #101216;
+  border-left: 2px solid #101216;
+  border-right: 1px solid #434b5c;
+  border-bottom: 1px solid #434b5c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  overflow: auto;
+}
+
+.xp-canvas-frame {
+  background-color: #0d1014;
+  padding: 2px;
+  border-top: 1px solid #434b5c;
+  border-left: 1px solid #434b5c;
+  border-right: 1px solid #101216;
+  border-bottom: 1px solid #101216;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+/* 8x8 Pixel Grid */
+.xp-pixel-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 20px);
+  grid-template-rows: repeat(8, 20px);
+  gap: 1px;
+  background-color: #272c36;
+  touch-action: none;
+  user-select: none;
+}
+
+.xp-pixel-cell {
+  width: 20px;
+  height: 20px;
+  background-color: #181b21;
+  cursor: crosshair;
+  box-sizing: border-box;
+}
+
+.xp-pixel-cell:hover {
+  outline: 1px dotted #ffffff;
+  z-index: 2;
+}
+
+/* Color Palette Section */
+.xp-palette-section {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #272c36;
+  padding: 4px 6px;
+  border-top: 1px solid #3c4454;
+}
+
+.xp-color-preview-box {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  background-color: #1f232b;
+  border-top: 1px solid #181b21;
+  border-left: 1px solid #181b21;
+  border-right: 1px solid #434b5c;
+  border-bottom: 1px solid #434b5c;
+  flex-shrink: 0;
+}
+
+.xp-color-bg {
+  position: absolute;
+  bottom: 3px;
+  right: 3px;
+  width: 15px;
+  height: 15px;
+  background-color: #181b21;
+  border: 1px solid #ffffff;
+}
+
+.xp-color-fg {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 15px;
+  height: 15px;
+  background-color: #58a6ff;
+  border: 1px solid #ffffff;
+  z-index: 1;
+}
+
+.xp-palette-grid {
+  display: grid;
+  grid-template-columns: repeat(14, 13px);
+  grid-template-rows: repeat(2, 13px);
+  gap: 1px;
+  background-color: #181b21;
+  padding: 1px;
+  border-top: 1px solid #181b21;
+  border-left: 1px solid #181b21;
+  border-right: 1px solid #434b5c;
+  border-bottom: 1px solid #434b5c;
+  width: fit-content;
+}
+
+.xp-swatch {
+  width: 13px;
+  height: 13px;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  border-left: 1px solid rgba(255,255,255,0.2);
+  border-right: 1px solid rgba(0,0,0,0.5);
+  border-bottom: 1px solid rgba(0,0,0,0.5);
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+/* XP Drawing Send Bar */
+.xp-send-bar {
+  display: flex;
+  gap: 4px;
+  background-color: #272c36;
+  padding: 4px 6px;
+  border-top: 1px solid #3c4454;
+}
+
+#xpSenderName {
+  flex-grow: 1;
+  background-color: #121418;
+  border: 1px solid #181b21;
+  color: #e1e6ed;
+  font-family: Tahoma, sans-serif;
+  font-size: 10px;
+  padding: 3px 6px;
+  border-radius: 2px;
+}
+
+#xpSenderName:focus {
+  outline: 1px solid #0a4ecb;
+}
+
+.xp-send-btn {
+  width: auto !important;
+  padding: 0 8px !important;
+  font-size: 10px !important;
+  font-weight: bold;
+  color: #58a6ff;
+  background: #1f232b !important;
+}
+
+.xp-send-btn:hover {
+  background: #0a4ecb !important;
+  color: #ffffff;
+}
+
+/* Status Bar */
+.xp-status-bar {
+  display: flex;
+  background-color: #272c36;
+  padding: 2px 4px;
+  gap: 3px;
+  border-top: 1px solid #181b21;
+  font-size: 10px;
+  color: #a0a8b6;
+}
+
+.xp-status-pane {
+  background-color: #272c36;
+  padding: 1px 4px;
+  border-top: 1px solid #181b21;
+  border-left: 1px solid #181b21;
+  border-right: 1px solid #434b5c;
+  border-bottom: 1px solid #434b5c;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.xp-status-main { flex-grow: 1; }
+.xp-status-coords { width: 38px; text-align: center; }
+.xp-status-dim { width: 44px; text-align: center; }
+</style>
+
+<script>
+(function() {
+  function initPaintWidget() {
+    const paletteColors = [
+      '#000000', '#7b7b7b', '#7b0000', '#7b7b00', '#007b00', '#007b7b', '#00007b', '#7b007b',
+      '#003b7b', '#007b3b', '#00f8f8', '#007bf8', '#7b00f8', '#7b3b00',
+      '#ffffff', '#c3c3c3', '#f80000', '#f8f800', '#00f800', '#00f8f8', '#0000f8', '#f800f8',
+      '#58a6ff', '#3fb950', '#f85149', '#d29922', '#a371f7', '#181b21'
+    ];
+
+    const DEFAULT_CANVAS_COLOR = '#181b21';
+    let activeColor = '#58a6ff';
+    let activeTool = 'pencil';
+    let isDrawing = false;
+
+    const gridEl = document.getElementById('xpPixelGrid');
+    const fgPreview = document.getElementById('fgColorPreview');
+    const paletteGrid = document.getElementById('xpPaletteGrid');
+    const statusText = document.getElementById('xpStatusText');
+    const coordsText = document.getElementById('xpCoords');
+    const resetBtn = document.getElementById('xpResetBtn');
+    const newMenu = document.getElementById('xpNewMenu');
+
+    if (!gridEl || !paletteGrid) return;
+
+    // 1. Build Color Palette Swatches
+    paletteGrid.innerHTML = '';
+    paletteColors.forEach(color => {
+      const swatch = document.createElement('div');
+      swatch.className = 'xp-swatch';
+      swatch.style.backgroundColor = color;
+      swatch.title = color;
+
+      swatch.addEventListener('click', (e) => {
+        e.preventDefault();
+        activeColor = color;
+        if (fgPreview) fgPreview.style.backgroundColor = color;
+        if (activeTool === 'eraser') setTool('pencil');
+      });
+
+      paletteGrid.appendChild(swatch);
+    });
+
+    // 2. Build 8x8 Pixel Grid
+    gridEl.innerHTML = '';
+    for (let i = 0; i < 64; i++) {
+      const cell = document.createElement('div');
+      cell.className = 'xp-pixel-cell';
+      cell.dataset.index = i;
+      cell.style.backgroundColor = DEFAULT_CANVAS_COLOR;
+
+      const x = (i % 8) + 1;
+      const y = Math.floor(i / 8) + 1;
+
+      cell.addEventListener('mousedown', (e) => {
+        e.preventDefault();
+        isDrawing = true;
+        if (coordsText) coordsText.textContent = `${x}, ${y}`;
+        applyTool(cell);
+      });
+
+      cell.addEventListener('mouseenter', (e) => {
+        if (coordsText) coordsText.textContent = `${x}, ${y}`;
+        if (isDrawing) applyTool(cell);
+      });
+
+      cell.addEventListener('dragstart', (e) => e.preventDefault());
+
+      gridEl.appendChild(cell);
+    }
+
+    // Stop drawing on mouseup
+    window.addEventListener('mouseup', () => { isDrawing = false; });
+
+    // Touch Support for Mobile
+    gridEl.addEventListener('touchstart', (e) => {
+      isDrawing = true;
+      handleTouch(e);
+    }, { passive: false });
+
+    gridEl.addEventListener('touchmove', (e) => {
+      if (isDrawing) {
+        e.preventDefault();
+        handleTouch(e);
+      }
+    }, { passive: false });
+
+    window.addEventListener('touchend', () => { isDrawing = false; });
+
+    function handleTouch(e) {
+      const touch = e.touches[0];
+      if (!touch) return;
+      const target = document.elementFromPoint(touch.clientX, touch.clientY);
+      if (target && target.classList.contains('xp-pixel-cell')) {
+        const idx = parseInt(target.dataset.index, 10);
+        if (coordsText) coordsText.textContent = `${(idx % 8) + 1}, ${Math.floor(idx / 8) + 1}`;
+        applyTool(target);
+      }
+    }
+
+    // 3. Tool Logic
+    function applyTool(cell) {
+      if (activeTool === 'pencil') {
+        cell.style.backgroundColor = activeColor;
+      } else if (activeTool === 'eraser') {
+        cell.style.backgroundColor = DEFAULT_CANVAS_COLOR;
+      } else if (activeTool === 'bucket') {
+        document.querySelectorAll('.xp-pixel-cell').forEach(c => {
+          c.style.backgroundColor = activeColor;
+        });
+      } else if (activeTool === 'eyedropper') {
+        const picked = cell.style.backgroundColor || DEFAULT_CANVAS_COLOR;
+        activeColor = rgbToHex(picked);
+        if (fgPreview) fgPreview.style.backgroundColor = activeColor;
+        setTool('pencil');
+      }
+    }
+
+    // 4. Tool Select Handlers
+    document.querySelectorAll('.xp-tool-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const toolName = btn.dataset.tool;
+        if (['pencil', 'eraser', 'bucket', 'eyedropper'].includes(toolName)) {
+          setTool(toolName);
+        } else if (btn.id !== 'xpSendBtn') {
+          if (statusText) statusText.textContent = `${btn.title || 'Tool'} is decorative in 8x8 mode.`;
+        }
+      });
+    });
+
+    function setTool(toolName) {
+      activeTool = toolName;
+      document.querySelectorAll('.xp-tool-btn').forEach(b => {
+        if (b.id !== 'xpSendBtn') b.classList.remove('active');
+      });
+      const activeBtn = document.querySelector(`.xp-tool-btn[data-tool="${toolName}"]`);
+      if (activeBtn) activeBtn.classList.add('active');
+
+      const toolHelp = {
+        pencil: 'Pencil tool active. Click or drag on canvas.',
+        eraser: 'Eraser active. Clears pixels back to dark background.',
+        bucket: 'Fill Bucket active. Fills entire canvas with current color.',
+        eyedropper: 'Eyedropper active. Click any pixel to pick its color.'
+      };
+      if (statusText) statusText.textContent = toolHelp[toolName] || 'Paint tool selected.';
+    }
+
+    // Reset Canvas
+    function clearCanvas() {
+      document.querySelectorAll('.xp-pixel-cell').forEach(cell => {
+        cell.style.backgroundColor = DEFAULT_CANVAS_COLOR;
+      });
+      if (statusText) statusText.textContent = 'New image created.';
+    }
+
+    if (resetBtn) resetBtn.addEventListener('click', clearCanvas);
+    if (newMenu) newMenu.addEventListener('click', clearCanvas);
+
+    function rgbToHex(rgb) {
+      if (!rgb || rgb.startsWith('#')) return rgb || DEFAULT_CANVAS_COLOR;
+      const nums = rgb.match(/\d+/g);
+      if (!nums) return DEFAULT_CANVAS_COLOR;
+      return "#" + nums.slice(0, 3).map(n => parseInt(n).toString(16).padStart(2, '0')).join('');
+    }
+
+    // 5. Send Drawing Handler
+    const sendBtn = document.getElementById('xpSendBtn');
+    if (sendBtn) {
+      sendBtn.addEventListener('click', () => {
+        const senderName = (document.getElementById('xpSenderName')?.value || '').trim();
+        const canvas = document.createElement('canvas');
+        canvas.width = 256;
+        canvas.height = 256;
+        const ctx = canvas.getContext('2d');
+        ctx.imageSmoothingEnabled = false;
+
+        document.querySelectorAll('.xp-pixel-cell').forEach((cell, i) => {
+          const x = (i % 8) * 32;
+          const y = Math.floor(i / 8) * 32;
+          ctx.fillStyle = cell.style.backgroundColor || DEFAULT_CANVAS_COLOR;
+          ctx.fillRect(x, y, 32, 32);
+        });
+
+        // Put your actual Discord Webhook URL here:
+        const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1555854014157951086/F4BMtLMJPmFkDbfh7wB-NVeZf-g3Bhtq35ZWmZtSdsWwqd6M1D_DJRoCnkZ-D9Mo7Lau';
+
+        if (DISCORD_WEBHOOK_URL === 'YOUR_DISCORD_WEBHOOK_URL_HERE') {
+          alert('⚠️ Please set your Discord Webhook URL on line 386 of the script!');
+          return;
+        }
+
+        if (statusText) statusText.textContent = 'Sending drawing...';
+        canvas.toBlob(async (blob) => {
+          const formData = new FormData();
+          formData.append('file', blob, 'pixel-drawing.png');
+          formData.append('content', `🎨 **New Pixel Drawing** from **${senderName || 'Anonymous'}**!`);
+
+          try {
+            const response = await fetch(DISCORD_WEBHOOK_URL, { method: 'POST', body: formData });
+            if (response.ok) {
+              if (statusText) statusText.textContent = 'Drawing sent successfully!';
+              alert('🎉 Drawing sent successfully!');
+            } else {
+              if (statusText) statusText.textContent = 'Failed to send drawing.';
+              alert('Failed to send drawing. Check your Discord Webhook URL.');
+            }
+          } catch (err) {
+            if (statusText) statusText.textContent = 'Error sending drawing.';
+            alert('Error: ' + err.message);
+          }
+        }, 'image/png');
+      });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPaintWidget);
+  } else {
+    initPaintWidget();
+  }
+})();
+</script></div>
+                </div>
+
+                <div style="position: absolute; left: 501px; top: 754px; width: 299px; height: 246px; z-index: 480; overflow: hidden;">
+                    <div class="w-full h-full overflow-hidden" style=""><!-- Retro Dark XP Guestbook Widget -->
+<div class="xp-guestbook-window">
+  <!-- Title Bar -->
+  <div class="xp-title-bar">
+    <div class="xp-title-text">
+      <svg viewBox="0 0 16 16" width="14" height="14">
+        <path fill="#58a6ff" d="M2 3h12v10H2z"/>
+        <path fill="#272c36" d="M4 5h8v1H4zm0 2h8v1H4zm0 2h5v1H4z"/>
+      </svg>
+      Guestbook - Leave a Message
+    </div>
+    <div class="xp-title-controls">
+      <button class="xp-win-btn" title="Minimize">_</button>
+      <button class="xp-win-btn" title="Maximize">□</button>
+      <button class="xp-win-btn xp-close-btn" title="Close">✕</button>
+    </div>
+  </div>
+
+  <!-- Form Body -->
+  <form id="xpGuestbookForm" class="xp-guestbook-body">
+    <div class="xp-field">
+      <label for="gbName">Name / Handle:</label>
+      <input type="text" id="gbName" placeholder="e.g. AnonCoder" maxlength="30" required />
+    </div>
+
+    <div class="xp-field">
+      <label for="gbMessage">Message:</label>
+      <textarea id="gbMessage" rows="4" placeholder="Write something nice..." maxlength="500" required></textarea>
+    </div>
+
+    <div class="xp-actions">
+      <span id="gbStatus" class="gb-status">Ready</span>
+      <button type="submit" id="gbSubmitBtn" class="gb-submit-btn">✉️ Sign Guestbook</button>
+    </div>
+  </form>
+</div>
+
+<style>
+/* Window Container */
+.xp-guestbook-window {
+  width: 300px;
+  background-color: #272c36;
+  border: 2px solid #3c4454;
+  border-radius: 6px 6px 2px 2px;
+  font-family: Tahoma, "Segoe UI", Geneva, sans-serif;
+  font-size: 11px;
+  color: #e1e6ed;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), inset 1px 1px 0 rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  user-select: none;
+}
+
+/* XP Title Bar */
+.xp-guestbook-window .xp-title-bar {
+  background: linear-gradient(180deg, #0058e6 0%, #003bb3 50%, #002699 51%, #0040cc 100%);
+  padding: 3px 5px 3px 7px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #ffffff;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
+}
+
+.xp-guestbook-window .xp-title-text {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+}
+
+.xp-guestbook-window .xp-title-controls {
+  display: flex;
+  gap: 2px;
+}
+
+.xp-guestbook-window .xp-win-btn {
+  width: 18px;
+  height: 18px;
+  background: linear-gradient(180deg, #3c82f8 0%, #0a4ecb 100%);
+  border: 1px solid #ffffff;
+  border-radius: 3px;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: bold;
+  line-height: 14px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.xp-guestbook-window .xp-close-btn {
+  background: linear-gradient(180deg, #f27261 0%, #d92d18 100%);
+}
+
+.xp-guestbook-window .xp-close-btn:hover {
+  background: linear-gradient(180deg, #ff8573 0%, #f03520 100%);
+}
+
+/* Form Layout */
+.xp-guestbook-body {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #1f232b;
+}
+
+.xp-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.xp-field label {
+  color: #a0a8b6;
+  font-size: 10px;
+}
+
+.xp-field input, 
+.xp-field textarea {
+  background-color: #121418;
+  border-top: 1px solid #101216;
+  border-left: 1px solid #101216;
+  border-right: 1px solid #434b5c;
+  border-bottom: 1px solid #434b5c;
+  color: #e1e6ed;
+  padding: 6px;
+  font-family: Tahoma, sans-serif;
+  font-size: 11px;
+  border-radius: 2px;
+  resize: vertical;
+}
+
+.xp-field input:focus, 
+.xp-field textarea:focus {
+  outline: 1px solid #0a4ecb;
+  background-color: #161920;
+}
+
+/* Form Action Bar */
+.xp-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2px;
+}
+
+.gb-status {
+  font-size: 10px;
+  color: #8b949e;
+}
+
+.gb-submit-btn {
+  background: #272c36;
+  border-top: 1px solid #434b5c;
+  border-left: 1px solid #434b5c;
+  border-right: 1px solid #181b21;
+  border-bottom: 1px solid #181b21;
+  color: #58a6ff;
+  padding: 4px 10px;
+  font-family: Tahoma, sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.gb-submit-btn:hover {
+  background: #0a4ecb;
+  color: #ffffff;
+}
+
+.gb-submit-btn:active {
+  background: #181b21;
+  border-top: 1px solid #101216;
+  border-left: 1px solid #101216;
+  border-right: 1px solid #3c4454;
+  border-bottom: 1px solid #3c4454;
+}
+
+.gb-submit-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+</style>
+
+<script>
+(function() {
+  function initGuestbook() {
+    const form = document.getElementById('xpGuestbookForm');
+    if (!form) return;
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Paste your Discord Webhook URL below:
+      const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1555857270267453470/rV_tBvK8IKIcPyLQDUA3pjyrkbEt-Z27SzYGQw6Ovmug-WFdtdXCsJQO9tC-UO-n5ulW';
+
+      if (DISCORD_WEBHOOK_URL === 'YOUR_DISCORD_WEBHOOK_URL_HERE') {
+        alert('⚠️ Please set your Discord Webhook URL in the script!');
+        return;
+      }
+
+      const nameInput = document.getElementById('gbName');
+      const msgInput = document.getElementById('gbMessage');
+      const statusEl = document.getElementById('gbStatus');
+      const submitBtn = document.getElementById('gbSubmitBtn');
+
+      const name = nameInput.value.trim();
+      const message = msgInput.value.trim();
+
+      if (!name || !message) return;
+
+      // Construct Rich Embed Payload
+      const embedPayload = {
+        embeds: [{
+          title: "📖 New Guestbook Entry",
+          color: 0x58a6ff,
+          fields: [
+            { name: "Author", value: name, inline: true },
+            { name: "Message", value: message }
+          ],
+          footer: { text: "Website Guestbook" },
+          timestamp: new Date().toISOString()
+        }]
+      };
+
+      statusEl.textContent = 'Posting...';
+      submitBtn.disabled = true;
+
+      try {
+        const response = await fetch(DISCORD_WEBHOOK_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(embedPayload)
+        });
+
+        if (response.ok) {
+          statusEl.textContent = 'Posted!';
+          alert('🎉 Thank you for signing the guestbook!');
+          form.reset();
+        } else {
+          const errText = await response.text();
+          statusEl.textContent = `Error ${response.status}`;
+          alert(`Failed to post (HTTP ${response.status}):\n${errText}`);
+        }
+      } catch (err) {
+        statusEl.textContent = 'Network error.';
+        alert('Network Error (Check browser extensions/adblockers):\n' + err.message);
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initGuestbook);
+  } else {
+    initGuestbook();
+  }
+})();
+</script></div>
+                </div>
+
+                <div style="position: absolute; left: 7px; top: 475px; width: 40px; height: 20px; z-index: 490; overflow: hidden;">
+                    <div class="w-full h-full overflow-hidden" style=""><!-- Dark XP Draggable Notepad Sticky Notes System -->
+<div id="xpNotesApp">
+  <!-- Spawner Bar / Control Hub -->
+  <div class="xp-notes-spawner">
+    <button id="xpSpawnNoteBtn" class="xp-spawn-btn">📝 New Sticky Note</button>
+  </div>
+
+  <!-- Note Container -->
+  <div id="xpNotesContainer"></div>
+</div>
+
+<style>
+/* App Layering & Spawner Button */
+#xpNotesApp {
+  font-family: Tahoma, "Segoe UI", Geneva, sans-serif;
+  font-size: 11px;
+  color: #e1e6ed;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Positioned at bottom left */
+.xp-notes-spawner {
+  position: fixed;
+  bottom: 15px;
+  left: 15px;
+  z-index: 99999;
+}
+
+.xp-spawn-btn {
+  background: linear-gradient(180deg, #272c36 0%, #1f232b 100%);
+  border-top: 1px solid #434b5c;
+  border-left: 1px solid #434b5c;
+  border-right: 1px solid #181b21;
+  border-bottom: 1px solid #181b21;
+  color: #58a6ff;
+  font-family: Tahoma, sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.xp-spawn-btn:hover {
+  background: #0a4ecb;
+  color: #ffffff;
+}
+
+.xp-spawn-btn:active {
+  background: #181b21;
+  box-shadow: inset 1px 1px 2px rgba(0,0,0,0.6);
+}
+
+/* Draggable Notepad Window */
+.xp-note-window {
+  position: fixed;
+  width: 260px;
+  background-color: #272c36;
+  border: 2px solid #3c4454;
+  border-radius: 6px 6px 2px 2px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), inset 1px 1px 0 rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* XP Title Bar (Draggable Header) */
+.xp-note-window .xp-title-bar {
+  background: linear-gradient(180deg, #0058e6 0%, #003bb3 50%, #002699 51%, #0040cc 100%);
+  padding: 3px 5px 3px 7px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #ffffff;
+  font-weight: bold;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.7);
+  cursor: move;
+}
+
+.xp-note-window.active-window .xp-title-bar {
+  background: linear-gradient(180deg, #0058e6 0%, #003bb3 50%, #002699 51%, #0040cc 100%);
+}
+
+.xp-note-window:not(.active-window) .xp-title-bar {
+  background: linear-gradient(180deg, #424957 0%, #2c323d 100%);
+  color: #a0a8b6;
+  text-shadow: none;
+}
+
+.xp-note-window .xp-title-text {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 170px;
+}
+
+.xp-note-window .xp-title-controls {
+  display: flex;
+  gap: 2px;
+}
+
+.xp-note-window .xp-win-btn {
+  width: 18px;
+  height: 18px;
+  background: linear-gradient(180deg, #3c82f8 0%, #0a4ecb 100%);
+  border: 1px solid #ffffff;
+  border-radius: 3px;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: bold;
+  line-height: 14px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+.xp-note-window:not(.active-window) .xp-win-btn {
+  background: linear-gradient(180deg, #5c6575 0%, #3a414e 100%);
+  border-color: #a0a8b6;
+}
+
+.xp-note-window .xp-close-btn {
+  background: linear-gradient(180deg, #f27261 0%, #d92d18 100%) !important;
+}
+
+.xp-note-window .xp-close-btn:hover {
+  background: linear-gradient(180deg, #ff8573 0%, #f03520 100%) !important;
+}
+
+/* Notepad Menu Strip */
+.xp-note-menu {
+  background-color: #272c36;
+  padding: 1px 4px;
+  display: flex;
+  gap: 8px;
+  border-bottom: 1px solid #1c2027;
+  font-size: 10px;
+}
+
+.xp-note-menu-item {
+  color: #a0a8b6;
+  padding: 1px 2px;
+  cursor: pointer;
+}
+
+.xp-note-menu-item:hover {
+  background-color: #0a4ecb;
+  color: #ffffff;
+}
+
+/* Textarea Body */
+.xp-note-body {
+  background-color: #161920;
+  padding: 2px;
+  display: flex;
+  flex-direction: column;
+}
+
+.xp-note-textarea {
+  width: 100%;
+  height: 140px;
+  background-color: #121418;
+  color: #f0f4f8;
+  border-top: 1px solid #101216;
+  border-left: 1px solid #101216;
+  border-right: 1px solid #3c4454;
+  border-bottom: 1px solid #3c4454;
+  font-family: "Consolas", "Lucida Console", "Courier New", monospace;
+  font-size: 11px;
+  line-height: 1.4;
+  padding: 6px;
+  box-sizing: border-box;
+  resize: vertical;
+  outline: none;
+  user-select: text;
+  -webkit-user-select: text;
+}
+
+.xp-note-textarea:focus {
+  background-color: #0d0f12;
+  border-color: #0a4ecb;
+}
+
+/* Collapsed Window State */
+.xp-note-window.collapsed .xp-note-menu,
+.xp-note-window.collapsed .xp-note-body,
+.xp-note-window.collapsed .xp-note-status {
+  display: none;
+}
+
+/* Status Bar */
+.xp-note-status {
+  background-color: #272c36;
+  padding: 2px 6px;
+  font-size: 9px;
+  color: #8b949e;
+  border-top: 1px solid #181b21;
+  display: flex;
+  justify-content: space-between;
+}
+</style>
+
+<script>
+(function() {
+  const STORAGE_KEY = 'xp_notepad_sticky_notes';
+  let highestZIndex = 1000;
+
+  const defaultNotes = [
+    {
+      id: 'note-1',
+      title: 'Welcome.txt',
+      text: '📌 Dark XP Sticky Notes\n\n• Drag the blue title bar to move.\n• Type anything - it auto-saves!\n• Click "_" to collapse or "✕" to delete.\n• Spawner button at bottom left adds more notes.',
+      x: 60,
+      y: 60,
+      collapsed: false,
+      zIndex: 1001
+    }
+  ];
+
+  function getSavedNotes() {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      return saved ? JSON.parse(saved) : defaultNotes;
+    } catch(e) {
+      return defaultNotes;
+    }
+  }
+
+  function saveNotes(notes) {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(notes));
+    } catch(e) {
+      console.warn('Could not save sticky notes to localStorage:', e);
+    }
+  }
+
+  function renderApp() {
+    const container = document.getElementById('xpNotesContainer');
+    if (!container) return;
+    
+    container.innerHTML = '';
+    const notes = getSavedNotes();
+
+    notes.forEach(noteData => {
+      if (noteData.zIndex > highestZIndex) highestZIndex = noteData.zIndex;
+      const noteEl = createNoteElement(noteData);
+      container.appendChild(noteEl);
+    });
+  }
+
+  function createNoteElement(data) {
+    const win = document.createElement('div');
+    win.className = `xp-note-window ${data.collapsed ? 'collapsed' : ''}`;
+    win.id = data.id;
+    win.style.left = `${data.x}px`;
+    win.style.top = `${data.y}px`;
+    win.style.zIndex = data.zIndex || 1000;
+
+    win.innerHTML = `
+      <div class="xp-title-bar">
+        <div class="xp-title-text">
+          <svg viewBox="0 0 16 16" width="12" height="12">
+            <path fill="#ffffff" d="M3 1h8l3 3v11H3V1zm8 1v3h3L11 2z"/>
+          </svg>
+          <span class="xp-title-label">${escapeHtml(data.title)}</span>
+        </div>
+        <div class="xp-title-controls">
+          <button class="xp-win-btn xp-min-btn" title="Minimize / Expand">${data.collapsed ? '□' : '_'}</button>
+          <button class="xp-win-btn xp-close-btn" title="Delete Note">✕</button>
+        </div>
+      </div>
+      <div class="xp-note-menu">
+        <span class="xp-note-menu-item"><u>F</u>ile</span>
+        <span class="xp-note-menu-item"><u>E</u>dit</span>
+        <span class="xp-note-menu-item"><u>F</u>ormat</span>
+        <span class="xp-note-menu-item"><u>H</u>elp</span>
+      </div>
+      <div class="xp-note-body">
+        <textarea class="xp-note-textarea" placeholder="Type your note here...">${escapeHtml(data.text)}</textarea>
+      </div>
+      <div class="xp-note-status">
+        <span class="xp-save-indicator">Saved</span>
+        <span class="xp-char-count">${data.text.length} chars</span>
+      </div>
+    `;
+
+    win.addEventListener('mousedown', () => bringToFront(win, data.id));
+
+    const minBtn = win.querySelector('.xp-min-btn');
+    minBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isCollapsed = win.classList.toggle('collapsed');
+      minBtn.textContent = isCollapsed ? '□' : '_';
+      updateNoteState(data.id, { collapsed: isCollapsed });
+    });
+
+    const closeBtn = win.querySelector('.xp-close-btn');
+    closeBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      deleteNote(data.id);
+    });
+
+    const textarea = win.querySelector('.xp-note-textarea');
+    const charCount = win.querySelector('.xp-char-count');
+    const saveIndicator = win.querySelector('.xp-save-indicator');
+
+    let saveTimeout;
+    textarea.addEventListener('input', () => {
+      charCount.textContent = `${textarea.value.length} chars`;
+      saveIndicator.textContent = 'Saving...';
+      
+      clearTimeout(saveTimeout);
+      saveTimeout = setTimeout(() => {
+        updateNoteState(data.id, { text: textarea.value });
+        saveIndicator.textContent = 'Saved';
+      }, 400);
+    });
+
+    const titleBar = win.querySelector('.xp-title-bar');
+    setupDragging(win, titleBar, data.id);
+
+    return win;
+  }
+
+  function bringToFront(win, id) {
+    document.querySelectorAll('.xp-note-window').forEach(w => w.classList.remove('active-window'));
+    win.classList.add('active-window');
+    
+    highestZIndex += 1;
+    win.style.zIndex = highestZIndex;
+    updateNoteState(id, { zIndex: highestZIndex });
+  }
+
+  function setupDragging(win, handle, id) {
+    let startX = 0, startY = 0, initialX = 0, initialY = 0;
+
+    handle.addEventListener('mousedown', dragStart);
+    handle.addEventListener('touchstart', dragStart, { passive: false });
+
+    function dragStart(e) {
+      if (e.target.classList.contains('xp-win-btn')) return;
+
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+      startX = clientX;
+      startY = clientY;
+      initialX = win.offsetLeft;
+      initialY = win.offsetTop;
+
+      document.addEventListener('mousemove', dragging);
+      document.addEventListener('touchmove', dragging, { passive: false });
+      document.addEventListener('mouseup', dragEnd);
+      document.addEventListener('touchend', dragEnd);
+    }
+
+    function dragging(e) {
+      if (e.type === 'touchmove') e.preventDefault();
+
+      const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+      const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+      const deltaX = clientX - startX;
+      const deltaY = clientY - startY;
+
+      const newX = Math.max(0, Math.min(window.innerWidth - win.offsetWidth, initialX + deltaX));
+      const newY = Math.max(0, Math.min(window.innerHeight - win.offsetHeight, initialY + deltaY));
+
+      win.style.left = `${newX}px`;
+      win.style.top = `${newY}px`;
+    }
+
+    function dragEnd() {
+      document.removeEventListener('mousemove', dragging);
+      document.removeEventListener('touchmove', dragging);
+      document.removeEventListener('mouseup', dragEnd);
+      document.removeEventListener('touchend', dragEnd);
+
+      updateNoteState(id, {
+        x: parseInt(win.style.left, 10),
+        y: parseInt(win.style.top, 10)
+      });
+    }
+  }
+
+  function updateNoteState(id, partialState) {
+    const notes = getSavedNotes();
+    const index = notes.findIndex(n => n.id === id);
+    if (index !== -1) {
+      notes[index] = { ...notes[index], ...partialState };
+      saveNotes(notes);
+    }
+  }
+
+  function deleteNote(id) {
+    let notes = getSavedNotes();
+    notes = notes.filter(n => n.id !== id);
+    saveNotes(notes);
+    
+    const el = document.getElementById(id);
+    if (el) el.remove();
+  }
+
+  function spawnNewNote() {
+    const notes = getSavedNotes();
+    const newId = 'note-' + Date.now();
+    const count = notes.length + 1;
+    
+    const offset = (notes.length % 6) * 25;
+    const newNote = {
+      id: newId,
+      title: `Note ${count}.txt`,
+      text: '',
+      x: 80 + offset,
+      y: 80 + offset,
+      collapsed: false,
+      zIndex: ++highestZIndex
+    };
+
+    notes.push(newNote);
+    saveNotes(notes);
+
+    const container = document.getElementById('xpNotesContainer');
+    if (container) {
+      const noteEl = createNoteElement(newNote);
+      container.appendChild(noteEl);
+      bringToFront(noteEl, newId);
+      
+      const textarea = noteEl.querySelector('.xp-note-textarea');
+      if (textarea) textarea.focus();
+    }
+  }
+
+  function escapeHtml(str) {
+    return str
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  function init() {
+    renderApp();
+    const spawnBtn = document.getElementById('xpSpawnNoteBtn');
+    if (spawnBtn) {
+      spawnBtn.addEventListener('click', spawnNewNote);
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script></div>
+                </div>
+
+    </div>
+</body>
+</html>
